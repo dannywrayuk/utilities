@@ -1,0 +1,22 @@
+{
+  "name": "utilities",
+  "private": true,
+  "scripts": {
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "@types/node": "20.2.5",
+    "@turbo/gen": "^1.9.7",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "eslint": "^7.32.0",
+    "eslint-config-custom": "*",
+    "prettier": "^2.5.1",
+    "turbo": "^1.9.7",
+    "typescript": "5.0.4"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "packageManager": "yarn@1.22.19"
+}

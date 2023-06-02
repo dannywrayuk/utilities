@@ -1,11 +1,11 @@
 {
-  "name": "shape",
-  "description": "runtime object shape",
+  "name": "describe-shape",
+  "description": "Runtime object shape descriptions",
   "author": "dannywrayuk",
   "version": "1.0.0",
   "license": "ISC",
   "main": "dist/index.js",
-  "homepage": "https://github.com/dannywrayuk/utilities/packages/shape#readme",
+  "homepage": "https://github.com/dannywrayuk/utilities/packages/describe-shape#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dannywrayuk/utilites.git"
@@ -19,7 +19,10 @@
     "@types/jest": "^29.5.2",
     "@types/node": "^20.2.5",
     "eslint-config-custom": "*",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
     "tsconfig": "*",
     "typescript": "^5.0.4"
-  }
+  },
+  "dependencies": {}
 }

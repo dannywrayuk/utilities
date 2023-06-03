@@ -1,0 +1,27 @@
+name: pr-describe-shape
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths:
+      - packages/describe-shape
+      - .github/workflows/pr-describe-shape
+  defaults:
+    run:
+      working-directory: packages/describe-shape
+
+jobs:
+  quality-checks:
+    steps:
+      - uses: actions/checkout@v3
+      - run: yarn
+
+      - name: lint
+        run: yarn lint
+
+      - name: build
+        run: yarn build
+
+      - name: test
+        run: yarn test

@@ -7,9 +7,9 @@ on:
     paths:
       - packages/describe-shape
       - .github/workflows/pr-describe-shape
-  defaults:
-    run:
-      working-directory: packages/describe-shape
+defaults:
+  run:
+    working-directory: packages/describe-shape
 
 jobs:
   quality-checks:

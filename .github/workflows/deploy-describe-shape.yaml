@@ -1,0 +1,15 @@
+name: pr-describe-shape
+on:
+  push:
+    branches: main
+    paths:
+      - packages/describe-shape
+defaults:
+  run:
+    working-directory: packages/describe-shape
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3

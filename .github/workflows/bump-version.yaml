@@ -28,7 +28,7 @@ jobs:
       - name: Version Bump
         run: |
           yarn config set version-git-message "🚀 Release v%s"
-          yarn workspace @dannywrayuk/${{ inputs.package }} version --${{ inputs.type }}"
+          yarn workspace @dannywrayuk/${{ inputs.package }} version --${{ inputs.type }}
 
       - name: Push Bump
         run: git push && git push --tags

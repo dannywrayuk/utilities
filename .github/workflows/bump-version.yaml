@@ -34,12 +34,13 @@ jobs:
         run: git push && git push --tags
 
       - name: Store New Version
-        run: echo "NEW_VERSION=$(yarn --silent workspace @dannywrayuk/${{ inputs.package }} version --non-interactive| grep "Current version:" | awk '{ print $4 }')" >> $GITHUB_ENV
+        run: echo "NEW_VERSION=$(yarn workspace @dannywrayuk/${{ inputs.package }} version --non-interactive| grep "Current version:" | awk '{ print $4 }')" >> $GITHUB_ENV
 
-      - name: Create Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ inputs.package }}-v${{ env.NEW_VERSION }}
-          release_name: Release ${{ inputs.package }} v${{ env.NEW_VERSION }}
+      # Action is deprecated
+      # - name: Create Release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: ${{ inputs.package }}-v${{ env.NEW_VERSION }}
+      #     release_name: Release ${{ inputs.package }} v${{ env.NEW_VERSION }}

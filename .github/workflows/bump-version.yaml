@@ -26,7 +26,9 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Version Bump
-        run: yarn workspace @dannywrayuk/${{ inputs.package }} version ${{ inputs.type }} -m "🚀 Release v%s (${{ inputs.type }})"
+        run: |
+          yarn config set version-git-message "🚀 Release v%s"
+          yarn workspace @dannywrayuk/${{ inputs.package }} version --${{ inputs.type }}"
 
       - name: Push Bump
         run: git push && git push --tags

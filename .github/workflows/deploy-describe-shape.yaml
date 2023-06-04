@@ -3,7 +3,7 @@ on:
   push:
     branches: main
     paths:
-      - packages/describe-shape
+      - packages/describe-shape/**
 
   workflow_dispatch:
     inputs:

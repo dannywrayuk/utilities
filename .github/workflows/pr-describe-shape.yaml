@@ -37,3 +37,4 @@ jobs:
           dry-run: true
           strategy: upgrade
           token: ${{ secrets.NPM_TOKEN }}
+          package: packages/describe-shape/package.json

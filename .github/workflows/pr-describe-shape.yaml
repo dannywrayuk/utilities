@@ -5,7 +5,7 @@ on:
       - opened
       - synchronize
     paths:
-      - packages/describe-shape
+      - packages/describe-shape/**
       - .github/workflows/pr-describe-shape.yaml
 defaults:
   run:

@@ -5,8 +5,8 @@
     "lint": "turbo run lint"
   },
   "devDependencies": {
-    "@types/node": "20.2.5",
     "@turbo/gen": "^1.9.7",
+    "@types/node": "20.2.5",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
     "eslint": "^7.32.0",
@@ -18,5 +18,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@1.22.19"
+  "packageManager": "yarn@1.22.19",
+  "version": "0.0.0"
 }

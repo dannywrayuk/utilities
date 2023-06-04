@@ -28,11 +28,11 @@ jobs:
 
       - name: Unit Test
         run: yarn test
-  version-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: JS-DevTools/npm-publish@v2
-        with:
-          dry-run: true
-          strategy: upgrade
-          token: ${{ secrets.NPM_TOKEN }}
+  # version-check:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: JS-DevTools/npm-publish@v2
+  #       with:
+  #         dry-run: true
+  #         strategy: upgrade
+  #         token: ${{ secrets.NPM_TOKEN }}

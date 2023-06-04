@@ -2,7 +2,7 @@
   "name": "@dannywrayuk/describe-shape",
   "description": "Runtime object shape descriptions",
   "author": "dannywrayuk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "ISC",
   "main": "dist/index.js",
   "homepage": "https://github.com/dannywrayuk/utilities/packages/describe-shape#readme",

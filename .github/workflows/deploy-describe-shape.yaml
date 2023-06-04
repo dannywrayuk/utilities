@@ -4,7 +4,7 @@ on:
     branches: main
     paths:
       - packages/describe-shape
-      - .github/workflows/pr-describe-shape.yaml
+      - .github/workflows/deploy-describe-shape.yaml
 
   workflow_dispatch:
     inputs:

@@ -3,7 +3,7 @@ on:
   push:
     branches: main
     paths:
-      - packages/describe-shape
+      - packages/describe-shape/**
 
   workflow_dispatch:
     inputs:
@@ -35,6 +35,9 @@ jobs:
     needs: bump-version
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: main
+
       - run: yarn
 
       - name: Build

@@ -32,7 +32,7 @@ jobs:
         run: git push && git push --tags
 
       - name: Store New Version
-        run: echo "NEW_VERSION=$(yarn workspace @dannywrayuk/${{ input.package }} version --non-interactive| grep "Current version:" | awk '{ print $4 }')" >> $GITHUB_ENV
+        run: echo "NEW_VERSION=$(yarn workspace @dannywrayuk/${{ inputs.package }} version --non-interactive| grep "Current version:" | awk '{ print $4 }')" >> $GITHUB_ENV
 
       - name: Create Release
         uses: actions/create-release@v1

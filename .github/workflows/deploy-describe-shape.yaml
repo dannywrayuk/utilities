@@ -1,0 +1,40 @@
+name: pr-describe-shape
+on:
+  push:
+    branches: main
+    paths:
+      - packages/describe-shape
+  workflow_dispatch:
+    inputs:
+      type:
+        description: Version Bump
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+defaults:
+  run:
+    working-directory: packages/describe-shape
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Build
+        run: yarn build
+
+      - name: Bump Version
+        uses: ./.github/workflows/bump-version.yaml
+        with:
+          package: describe-shape
+          type: ${{ inputs.type }}
+
+      - name: Publish
+        run: yarn publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

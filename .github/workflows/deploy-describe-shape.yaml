@@ -37,8 +37,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v1
-      with:
-        always-auth: true
+        with:
+          always-auth: true
 
       - run: yarn
 

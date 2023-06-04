@@ -28,7 +28,6 @@ jobs:
 
       - name: Unit Test
         run: yarn test
-
   version-check:
     runs-on: ubuntu-latest
     steps:

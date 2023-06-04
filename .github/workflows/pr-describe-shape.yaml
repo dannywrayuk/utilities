@@ -7,6 +7,9 @@ on:
     paths:
       - packages/describe-shape
       - .github/workflows/pr-describe-shape.yaml
+defaults:
+  run:
+    working-directory: packages/describe-shape
 
 jobs:
   quality-checks:
@@ -25,14 +28,3 @@ jobs:
 
       - name: Unit Test
         run: yarn test
-
-  version-check:
-    runs-on: ubuntu-latest
-    steps:
-      - run: ls
-      - uses: JS-DevTools/npm-publish@v2
-        with:
-          dry-run: true
-          strategy: upgrade
-          token: ${{ secrets.NPM_TOKEN }}
-          package: packages/describe-shape/package.json

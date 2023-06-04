@@ -16,13 +16,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: Install Dependencies
       - run: yarn
 
-      - name: lint
+      - name: Lint
         run: yarn lint
 
-      - name: build
+      - name: Build
         run: yarn build
 
-      - name: test
+      - name: Unit Test
         run: yarn test
+
+  version-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: JS-DevTools/npm-publish@v2
+        with:
+          dry-run: true
+          strategy: upgrade
+          token: ${{ secrets.NPM_TOKEN }}

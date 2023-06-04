@@ -24,7 +24,7 @@ defaults:
 jobs:
   bump-version:
     name: Bump Version
-    uses: ./.github/workflows/bump-version.yml
+    uses: ./.github/workflows/bump-version.yaml
     secrets: inherit
     with:
       package: describe-shape

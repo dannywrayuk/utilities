@@ -1,0 +1,47 @@
+name: Bump Package Version
+on:
+  workflow_call:
+    inputs:
+      type:
+        required: false
+        type: string
+        default: patch
+      package:
+        required: true
+        type: string
+
+jobs:
+  bump-version:
+    name: Bump Package Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          ref: main
+
+      - name: Git Config
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Version Bump
+        run: |
+          yarn config set version-tag-prefix "${{ inputs.package }}v"
+          yarn config set version-git-message "🚀 Release ${{ inputs.package }} v%s"
+          yarn workspace @dannywrayuk/${{ inputs.package }} version --${{ inputs.type || 'patch'}}
+
+      - name: Push Bump
+        run: git push && git push --tags
+
+      # - name: Store New Version
+      #   run: echo "NEW_VERSION=$(yarn workspace @dannywrayuk/${{ inputs.package }} version --non-interactive| grep "Current version:" | awk '{ print $4 }')" >> $GITHUB_ENV
+
+      # Action is deprecated
+      # - name: Create Release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: ${{ inputs.package }}-v${{ env.NEW_VERSION }}
+      #     release_name: Release ${{ inputs.package }} v${{ env.NEW_VERSION }}

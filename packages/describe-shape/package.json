@@ -1,11 +1,11 @@
 {
-  "name": "example",
-  "description": "An example package",
+  "name": "@dannywrayuk/describe-shape",
+  "description": "Runtime object shape descriptions",
   "author": "dannywrayuk",
   "version": "1.0.0",
   "license": "ISC",
   "main": "dist/index.js",
-  "homepage": "https://github.com/dannywrayuk/utilities/packages/example#readme",
+  "homepage": "https://github.com/dannywrayuk/utilities/packages/describe-shape#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dannywrayuk/utilites.git"
@@ -23,5 +23,6 @@
     "ts-jest": "^29.1.0",
     "tsconfig": "*",
     "typescript": "^5.0.4"
-  }
+  },
+  "dependencies": {}
 }

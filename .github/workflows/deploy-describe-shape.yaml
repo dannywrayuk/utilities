@@ -1,9 +1,11 @@
-name: pr-describe-shape
+name: deploy-describe-shape
 on:
   push:
     branches: main
     paths:
       - packages/describe-shape
+      - .github/workflows/pr-describe-shape.yaml
+
   workflow_dispatch:
     inputs:
       type:

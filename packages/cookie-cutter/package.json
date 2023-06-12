@@ -1,0 +1,33 @@
+{
+  "name": "@dannywrayuk/cookie-cutter",
+  "description": "A simple file-based project generator",
+  "author": "dannywrayuk",
+  "version": "1.0.0",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "homepage": "https://github.com/dannywrayuk/utilities/packages/cookie-cutter#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dannywrayuk/utilites.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "lint": "eslint \"**/*.ts*\""
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.2.5",
+    "@types/prompt-sync": "^4.2.0",
+    "eslint-config-custom": "*",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "tsconfig": "*",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "prompt-sync": "^4.2.0",
+    "zod": "^3.21.4"
+  }
+}

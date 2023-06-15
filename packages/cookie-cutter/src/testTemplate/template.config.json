@@ -1,1 +1,10 @@
-[{ "id": "name", "question": "What is your name?", "default": "Danny" }]
+{
+  "questions": [
+    {
+      "type": "text",
+      "name": "name",
+      "message": "What is your name?",
+      "initial": "Danny"
+    }
+  ]
+}

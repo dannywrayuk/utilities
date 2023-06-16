@@ -1,10 +1,21 @@
 import fs from "node:fs";
 import path from "node:path";
-import prompt, { Choice } from "prompts";
-import { safe } from "./safe";
+import { Choice, PromptType } from "prompts";
 import { configFileName } from "./constants";
+import { safe } from "./safe";
 
-const getTemplateName = async (templateArg: string) => {
+export const getTemplate = (templateArg: string) => {
+  // check arg is a directory
+  safe(
+    () => fs.lstatSync(templateArg).isDirectory(),
+    "Template directory isn't a directory"
+  )();
+
+  // if directory contains a config file
+  if (safe(fs.lstatSync)(path.join(templateArg, configFileName)))
+    return { directory: templateArg, additionalQuestions: [] };
+
+  // if directory contains folders
   const folders = safe(() =>
     fs
       .readdirSync(templateArg)
@@ -13,30 +24,24 @@ const getTemplateName = async (templateArg: string) => {
       )
   )();
 
-  if (!folders || folders.length === 0)
-    throw new Error("No templates exist in this directory");
-  if (folders.length === 1) return folders[0];
-  return (
-    await prompt({
-      type: "select",
-      name: "value",
-      message: "Select a Template",
-      choices: folders as unknown as Choice[],
-    })
-  ).value;
-};
+  if (folders?.length === 1)
+    return {
+      directory: path.join(templateArg, folders[0]),
+      additionalQuestions: [],
+    };
 
-export const getTemplate = async (templateArg: string) => {
-  if (!safe(() => fs.lstatSync(templateArg).isDirectory())()) {
-    throw new Error("Template directory isn't a directory");
-  }
-  if (safe(fs.lstatSync)(path.join(templateArg, configFileName)))
-    return templateArg;
-  const templateName = await getTemplateName(templateArg);
-  if (
-    safe(fs.lstatSync)(path.join(templateArg, templateName, configFileName))
-  ) {
-    return path.join(templateArg, templateName);
-  }
+  if (folders?.length > 1)
+    return {
+      directory: path.join(templateArg, folders[0]),
+      additionalQuestions: [
+        {
+          type: "select" as PromptType,
+          name: "templateName",
+          message: "Select a Template",
+          choices: folders as unknown as Choice[],
+        },
+      ],
+    };
+
   throw new Error("Template directory doesn't exist");
 };

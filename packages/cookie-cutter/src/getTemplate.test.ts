@@ -1,15 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import { getTemplate } from "./getTemplate";
-import prompt from "prompts";
 
 const mockTemplatePath = "MOCK_TEMPLATE_PATH";
 const mockDirectory = "MOCK_DIRECTORY";
 const mockDataObject = { MOCK: "DATA" };
 const mockIsDirectory = { isDirectory: () => true };
 const mockNotDirectory = { isDirectory: () => false };
-
-jest.mock("prompts", () => () => ({ value: mockDirectory }));
 
 const mockLStat = jest.fn();
 jest.spyOn(fs, "lstatSync").mockImplementation(mockLStat);
@@ -36,7 +33,7 @@ it("should throw if path isn't a directory", async () => {
 
   (
     await expect(async () => await getTemplate(mockTemplatePath))
-  ).rejects.toThrowError(new Error("Template directory isn't a directory"));
+  ).rejects.toThrowError(new Error("Template directory doesn't exist"));
 });
 
 describe("when path is not a valid template", () => {
@@ -50,7 +47,7 @@ describe("when path is not a valid template", () => {
 
     (
       await expect(async () => await getTemplate(mockTemplatePath))
-    ).rejects.toThrowError(new Error("No templates exist in this directory"));
+    ).rejects.toThrowError(new Error("Template directory doesn't exist"));
 
     expect(mockReadDirSync).toHaveBeenCalledWith(mockTemplatePath);
     expect(mockLStat).toHaveBeenCalledWith(

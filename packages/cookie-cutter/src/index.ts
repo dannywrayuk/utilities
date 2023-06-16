@@ -1,34 +1,56 @@
-import * as z from "zod";
+import path from "node:path";
 import prompt from "prompts";
+import { hideBin } from "yargs/helpers";
+import yargs from "yargs/yargs";
 
 import { buildTemplate } from "./buildTemplate";
-import { getTemplate } from "./getTemplate";
-import { getDestination } from "./getDestination";
+import { appNameRegex } from "./constants";
 import { getConfigData } from "./getConfigData";
+import { getDestination } from "./getDestination";
+import { getTemplate } from "./getTemplate";
 
-const handleInputs = async (args: string[]) => {
-  const [templateArg, destinationArg] = args;
-  const templateDirectory = await getTemplate(templateArg);
-  const configData = getConfigData(templateDirectory);
+(async () => {
+  const argv = await yargs(hideBin(process.argv)).argv;
+
+  const [templateArg, destinationArg] = [
+    argv._?.[0] || ".",
+    argv._?.[1] || ".",
+  ].map((arg) => (typeof arg === "string" ? arg : String(arg)));
+
+  const template = getTemplate(templateArg);
   const templateVariables: Record<string, string> = await prompt(
-    configData.questions
+    template.additionalQuestions
+  );
+  const templateDirectory = path.join(
+    template.directory,
+    templateVariables?.templateName || ""
   );
 
-  const destinationDirectory = getDestination(
-    destinationArg,
-    templateVariables
+  if (argv.name == null && appNameRegex.test(destinationArg)) {
+    argv.name = destinationArg;
+  }
+
+  const configData = getConfigData(templateDirectory);
+  prompt.override({ ...argv, ...templateVariables });
+
+  const configVariables: Record<string, string> = await prompt(
+    configData?.questions || []
   );
+
+  const destination = getDestination(destinationArg, configVariables);
 
   buildTemplate({
     templateDirectory,
-    destinationDirectory,
-    templateVariables,
+    destinationDirectory: destination.directory,
+    templateVariables: configVariables,
   });
-};
+})();
 
-const argParsed = z.array(z.string()).min(3).safeParse(process.argv);
-if (argParsed.success) {
-  handleInputs(argParsed.data.slice(2));
-} else {
-  console.log("Did you mean to call me with some arguments?");
-}
+// cookie-cutter <template> <destination> <...vars>
+
+// template
+// always a directory
+// can be direct link to template, or folder containing templates
+
+// destination
+// can be directory, appName or expression

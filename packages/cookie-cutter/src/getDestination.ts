@@ -1,30 +1,28 @@
+import * as handlebars from "handlebars";
 import fs from "node:fs";
 import path from "node:path";
-import * as handlebars from "handlebars";
 import { appNameRegex } from "./constants";
 import { safe } from "./safe";
 
 export const getDestination = (
-  destinationArg: string | undefined,
+  destinationArg: string,
   templateVariables: Record<string, string>
 ) => {
-  if (!destinationArg) {
-    throw new Error(`An output destination is required`);
-  }
-
   const parsedDestination =
     handlebars.compile(destinationArg)(templateVariables);
+
   const destinationExists = !!safe(fs.lstatSync)(
     parsedDestination
   )?.isDirectory();
 
   if (destinationExists) {
-    return parsedDestination;
+    return { directory: parsedDestination };
   }
+
   if (appNameRegex.test(parsedDestination)) {
     const appPath = path.join(".", parsedDestination);
     fs.mkdirSync(appPath);
-    return appPath;
+    return { directory: appPath };
   }
 
   throw new Error(

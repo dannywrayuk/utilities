@@ -1,6 +1,6 @@
+import fs from "fs";
 import * as handlebars from "handlebars";
-import fs from "node:fs";
-import path from "node:path";
+import path from "path";
 
 export type TemplateConfig = {
   templateDirectory: string;

@@ -1,4 +1,5 @@
 import { safe } from "./safe";
+
 const mockReturnValue = "MOCK_RETURN";
 const mockErrorString = "MOCK_ERROR";
 const mockError = new Error(mockErrorString);

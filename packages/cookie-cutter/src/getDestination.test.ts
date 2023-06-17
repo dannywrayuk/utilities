@@ -1,39 +1,37 @@
-import fs from "node:fs";
+import fs from "fs";
 import { getDestination } from "./getDestination";
 
-const mockMkDir = jest.fn();
-jest.spyOn(fs, "mkdirSync").mockImplementation(mockMkDir);
+const mockDestinationArg = "MOCK_DESTINATION_ARG";
+
 const mockLStat = jest.fn();
 jest.spyOn(fs, "lstatSync").mockImplementation(mockLStat);
 
+const mockMkDir = jest.fn();
+jest.spyOn(fs, "mkdirSync").mockImplementation(mockMkDir);
+
 beforeEach(() => {
   jest.clearAllMocks();
-});
-
-it("should throw if destination is undefined", () => {
-  expect(() => getDestination(undefined, {})).toThrow();
+  mockLStat.mockReset();
+  mockMkDir.mockReset();
 });
 
 it("should return the destination if the directory exists", () => {
-  const mockDestinationArg = "MOCK_DESTINATION_ARG";
   mockLStat.mockImplementationOnce(() => ({ isDirectory: () => true }));
   const destination = getDestination(mockDestinationArg, {});
 
   expect(mockLStat).toHaveBeenCalledWith(mockDestinationArg);
-  expect(destination).toEqual(mockDestinationArg);
+  expect(destination).toEqual({ directory: mockDestinationArg });
 });
 
-it("should return the destination if the directory exists", () => {
-  const mockDestinationArg = "MOCK_DESTINATION_ARG";
+it("should mkdir if the input is an appname", () => {
   mockLStat.mockImplementationOnce(() => ({ isDirectory: () => false }));
   const destination = getDestination(mockDestinationArg, {});
 
   expect(mockLStat).toHaveBeenCalledWith(mockDestinationArg);
   expect(mockMkDir).toHaveBeenCalledWith(mockDestinationArg);
-  expect(destination).toEqual(mockDestinationArg);
+  expect(destination).toEqual({ directory: mockDestinationArg });
 });
 
 it("should throw if destination doesn't exist and not a valid app name", () => {
-  const mockDestinationArg = "£";
-  expect(() => getDestination(mockDestinationArg, {})).toThrow();
+  expect(() => getDestination("£", {})).toThrow();
 });

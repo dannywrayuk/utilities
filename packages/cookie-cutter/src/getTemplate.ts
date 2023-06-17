@@ -1,15 +1,19 @@
-import fs from "node:fs";
-import path from "node:path";
+import fs from "fs";
+import path from "path";
 import { Choice, PromptType } from "prompts";
 import { configFileName } from "./constants";
 import { safe } from "./safe";
 
 export const getTemplate = (templateArg: string) => {
   // check arg is a directory
-  safe(
+  const isDirectory = safe(
     () => fs.lstatSync(templateArg).isDirectory(),
-    "Template directory isn't a directory"
+    "Template directory doesn't exist"
   )();
+
+  if (!isDirectory) {
+    throw new Error("Template input isn't a directory");
+  }
 
   // if directory contains a config file
   if (safe(fs.lstatSync)(path.join(templateArg, configFileName)))
@@ -43,5 +47,5 @@ export const getTemplate = (templateArg: string) => {
       ],
     };
 
-  throw new Error("Template directory doesn't exist");
+  throw new Error("Template does no contain a config");
 };

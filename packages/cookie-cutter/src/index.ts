@@ -1,4 +1,4 @@
-import path from "node:path";
+import path from "path";
 import prompt from "prompts";
 import { hideBin } from "yargs/helpers";
 import yargs from "yargs/yargs";
@@ -45,12 +45,3 @@ import { getTemplate } from "./getTemplate";
     templateVariables: configVariables,
   });
 })();
-
-// cookie-cutter <template> <destination> <...vars>
-
-// template
-// always a directory
-// can be direct link to template, or folder containing templates
-
-// destination
-// can be directory, appName or expression

@@ -1,11 +1,13 @@
-import fs from "node:fs";
+import fs from "fs";
 import { getConfigData } from "./getConfigData";
 
-let mockReadFileSync = jest.spyOn(fs, "readFileSync");
 const mockConfigPath = "MOCK_CONFIG_PATH";
+
+const mockReadFileSync = jest.spyOn(fs, "readFileSync");
 
 beforeEach(() => {
   jest.clearAllMocks();
+  mockReadFileSync.mockReset();
 });
 
 it("should return the config data as json", () => {

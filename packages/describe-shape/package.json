@@ -1,15 +1,25 @@
 {
   "name": "@dannywrayuk/describe-shape",
-  "description": "Runtime object shape descriptions",
+  "description": "Simple object descriptions, perfect for your logs",
   "author": "dannywrayuk",
   "version": "1.0.1",
-  "license": "ISC",
+  "license": "MIT",
+  "keywords": [
+    "object",
+    "types",
+    "shape",
+    "logs"
+  ],
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "homepage": "https://github.com/dannywrayuk/utilities/packages/describe-shape#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dannywrayuk/utilites.git"
+    "url": "git+https://github.com/dannywrayuk/utilities.git"
   },
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "test": "jest",
     "build": "tsc",

@@ -12,7 +12,7 @@
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "homepage": "https://github.com/dannywrayuk/utilities/packages/describe-shape#readme",
+  "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/describe-shape",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dannywrayuk/utilities.git"

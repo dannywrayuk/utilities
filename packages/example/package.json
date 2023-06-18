@@ -8,7 +8,7 @@
   "homepage": "https://github.com/dannywrayuk/utilities/packages/example#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dannywrayuk/utilites.git"
+    "url": "git+https://github.com/dannywrayuk/utilities.git"
   },
   "scripts": {
     "test": "jest",

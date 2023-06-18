@@ -14,11 +14,13 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         height: 100%;"
     >
         <p style="
             color: #999;
             margin: 0;
+            width: min-content;
             font-size: 4.5rem;
             font-weight:bold;
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Sans-Serif;

@@ -1,3 +1,7 @@
+<p align="center" >
+ <img src="https://github.com/dannywrayuk/utilities/raw/main/packages/describe-shape/assets/logo.svg" alt="Text Logo" width="250" />
+</p>
+
 <h1 align="center">Describe Shape</h1>
 <p align="center">Simple object descriptions, perfect for your logs</p>
 <p align="center">

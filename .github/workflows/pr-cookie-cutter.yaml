@@ -1,0 +1,30 @@
+name: pr-cookie-cutter
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths:
+      - packages/cookie-cutter/**
+      - .github/workflows/pr-cookie-cutter.yaml
+defaults:
+  run:
+    working-directory: packages/cookie-cutter
+
+jobs:
+  quality-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Build
+        run: yarn build
+
+      - name: Unit Test
+        run: yarn test

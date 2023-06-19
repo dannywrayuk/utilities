@@ -22,7 +22,7 @@ Use this library to create a description of an input using only [primitive data 
 
 ## Install
 
-Installation can be done using your favourite package manager
+Use your favourite package manager
 
 Using npm:
 

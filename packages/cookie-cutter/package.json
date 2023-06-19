@@ -1,0 +1,45 @@
+{
+  "name": "@dannywrayuk/cookie-cutter",
+  "description": "Boilerplate generation based on template directories",
+  "author": "dannywrayuk",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "template",
+    "boilerplate",
+    "generator",
+    "handlebars"
+  ],
+  "main": "dist/index.js",
+  "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/cookie-cutter#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dannywrayuk/utilites.git"
+  },
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "tsc",
+    "lint": "eslint \"**/*.ts*\""
+  },
+  "devDependencies": {
+    "@types/handlebars-helpers": "^0.5.3",
+    "@types/jest": "^29.5.2",
+    "@types/node": "^20.2.5",
+    "@types/prompts": "^2.4.4",
+    "@types/yargs": "^17.0.24",
+    "eslint-config-custom": "*",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "tsconfig": "*",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.7",
+    "handlebars-helpers": "^0.10.0",
+    "prompts": "^2.4.2",
+    "yargs": "^17.7.2"
+  }
+}

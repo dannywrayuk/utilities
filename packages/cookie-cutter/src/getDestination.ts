@@ -1,15 +1,14 @@
 import fs from "fs";
-import * as handlebars from "handlebars";
 import path from "path";
 import { appNameRegex } from "./constants";
+import { handlebarsParse } from "./handlebarsParse";
 import { safe } from "./safe";
 
 export const getDestination = (
   destinationArg: string,
   templateVariables: Record<string, string>
 ) => {
-  const parsedDestination =
-    handlebars.compile(destinationArg)(templateVariables);
+  const parsedDestination = handlebarsParse(destinationArg, templateVariables);
 
   const destinationExists = !!safe(fs.lstatSync)(
     parsedDestination

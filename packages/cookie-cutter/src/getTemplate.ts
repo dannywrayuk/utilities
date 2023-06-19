@@ -5,21 +5,18 @@ import { configFileName } from "./constants";
 import { safe } from "./safe";
 
 export const getTemplate = (templateArg: string) => {
-  // check arg is a directory
   const isDirectory = safe(
     () => fs.lstatSync(templateArg).isDirectory(),
-    "Template directory doesn't exist"
+    `Template directory doesn't exist ${templateArg}`
   )();
 
   if (!isDirectory) {
     throw new Error("Template input isn't a directory");
   }
 
-  // if directory contains a config file
   if (safe(fs.lstatSync)(path.join(templateArg, configFileName)))
     return { directory: templateArg, additionalQuestions: [] };
 
-  // if directory contains folders
   const folders = safe(() =>
     fs
       .readdirSync(templateArg)

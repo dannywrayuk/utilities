@@ -18,9 +18,12 @@ import { getTemplate } from "./getTemplate";
   ].map((arg) => (typeof arg === "string" ? arg : String(arg)));
 
   const template = getTemplate(templateArg);
+
+  prompt.override(argv);
   const templateVariables: Record<string, string> = await prompt(
     template.additionalQuestions
   );
+
   const templateDirectory = path.join(
     template.directory,
     templateVariables?.templateName || ""
@@ -31,8 +34,8 @@ import { getTemplate } from "./getTemplate";
   }
 
   const configData = getConfigData(templateDirectory);
-  prompt.override({ ...argv, ...templateVariables });
 
+  prompt.override({ ...argv, ...templateVariables });
   const configVariables: Record<string, string> = await prompt(
     configData?.questions || []
   );

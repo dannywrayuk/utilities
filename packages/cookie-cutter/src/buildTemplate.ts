@@ -1,6 +1,6 @@
 import fs from "fs";
-import * as handlebars from "handlebars";
 import path from "path";
+import { handlebarsParse } from "./handlebarsParse";
 
 export type TemplateConfig = {
   templateDirectory: string;
@@ -10,7 +10,7 @@ export type TemplateConfig = {
 
 export const buildTemplate = (config: TemplateConfig) => {
   const parseExpression = (text: string) => {
-    return handlebars.compile(text)(config.templateVariables);
+    return handlebarsParse(text, config.templateVariables);
   };
 
   const copyDirectory = (source: string, destination: string) => {

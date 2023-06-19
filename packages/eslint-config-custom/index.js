@@ -10,4 +10,5 @@ module.exports = {
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-explicit-any": "off",
   },
+  ignorePatterns: ["**/coverage/**/*", "**/dist/**/*"],
 };

@@ -1,6 +1,5 @@
 <p align="center" >
- <!-- <img src="https://github.com/dannywrayuk/utilities/raw/main/packages/cookie-cutter/assets/logo.svg" alt="Text Logo" width="250" /> -->
- <img src="./assets/logo.svg" alt="Text Logo" width="250" />
+ <img src="https://github.com/dannywrayuk/utilities/raw/main/packages/cookie-cutter/assets/logo.svg" alt="Text Logo" width="250" />
 </p>
 
 <h1 align="center">Cookie Cutter</h1>

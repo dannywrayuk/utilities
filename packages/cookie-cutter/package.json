@@ -4,12 +4,21 @@
   "author": "dannywrayuk",
   "version": "1.0.0",
   "license": "MIT",
+  "keywords": [
+    "template",
+    "boilerplate",
+    "generator",
+    "handlebars"
+  ],
   "main": "dist/index.js",
-  "homepage": "https://github.com/dannywrayuk/utilities/packages/cookie-cutter#readme",
+  "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/cookie-cutter#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dannywrayuk/utilites.git"
   },
+  "files": [
+    "/dist"
+  ],
   "scripts": {
     "test": "jest --coverage",
     "build": "tsc",

@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { handlebarsParse } from "./handlebarsParse";
+import { safe } from "./safe";
 
 export type TemplateConfig = {
   templateDirectory: string;
@@ -33,7 +34,7 @@ export const buildTemplate = (config: TemplateConfig) => {
   };
 
   copyDirectory(config.templateDirectory, config.destinationDirectory);
-  try {
-    fs.rmSync(path.join(config.destinationDirectory, "template.config.json"));
-  } catch (e) {}
+  safe(fs.rmSync)(
+    path.join(config.destinationDirectory, "template.config.json")
+  );
 };

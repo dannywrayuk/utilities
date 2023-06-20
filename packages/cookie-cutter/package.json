@@ -11,7 +11,9 @@
     "handlebars"
   ],
   "main": "dist/index.js",
-  "bin": "dist/index.js",
+  "bin": {
+    "@dannywrayuk/cookie-cutter": "dist/index.js"
+  },
   "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/cookie-cutter#readme",
   "repository": {
     "type": "git",

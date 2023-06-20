@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import path from "path";
 import prompt from "prompts";
 import { hideBin } from "yargs/helpers";

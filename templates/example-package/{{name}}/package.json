@@ -1,17 +1,21 @@
 {
-  "name": "example",
-  "description": "An example package",
+  "name": "@dannywrayuk/{{name}}",
+  "description": "{{description}}",
   "author": "dannywrayuk",
   "version": "1.0.0",
-  "license": "ISC",
+  "license": "MIT",
+  "keywords": [],
   "main": "dist/index.js",
-  "homepage": "https://github.com/dannywrayuk/utilities/packages/example#readme",
+  "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/{{name}}#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dannywrayuk/utilities.git"
+    "url": "git+https://github.com/dannywrayuk/utilites.git"
   },
+  "files": [
+    "/dist"
+  ],
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "tsc",
     "lint": "eslint \"**/*.ts*\""
   },
@@ -23,5 +27,6 @@
     "ts-jest": "^29.1.0",
     "tsconfig": "*",
     "typescript": "^5.0.4"
-  }
+  },
+  "dependencies": {}
 }

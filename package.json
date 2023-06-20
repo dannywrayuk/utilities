@@ -2,9 +2,11 @@
   "name": "utilities",
   "private": true,
   "scripts": {
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "new-package": "cookie-cutter ./templates/example-package ./packages"
   },
   "devDependencies": {
+    "@dannywrayuk/cookie-cutter": "^1.0.4",
     "@turbo/gen": "^1.9.7",
     "@types/node": "20.2.5",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
@@ -16,7 +18,8 @@
     "typescript": "5.0.4"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "internal/*"
   ],
   "packageManager": "yarn@1.22.19"
 }

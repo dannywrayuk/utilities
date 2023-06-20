@@ -1,0 +1,14 @@
+{
+  "questions": [
+    {
+      "type": "text",
+      "name": "name",
+      "message": "What is the package name?"
+    },
+    {
+      "type": "text",
+      "name": "description",
+      "message": "Can you give it a brief description?"
+    }
+  ]
+}

@@ -8,7 +8,7 @@
   <a href="https://npmjs.org/package/@dannywrayuk/casing">
     <img src="https://img.shields.io/npm/v/@dannywrayuk/casing.svg" alt="version" />
   </a>
-   <a href="https://npmjs.org/package/@dannywrayuk/casing">
+   <a href="https://bundlephobia.com/package/@dannywrayuk/casing">
     <img src="https://img.shields.io/bundlephobia/min/@dannywrayuk/casing.svg" alt="install size" />
   </a>
   <a href="https://npmjs.org/package/@dannywrayuk/casing">

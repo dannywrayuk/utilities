@@ -8,7 +8,7 @@
   <a href="https://npmjs.org/package/@dannywrayuk/describe-shape">
     <img src="https://img.shields.io/npm/v/@dannywrayuk/describe-shape.svg" alt="version" />
   </a>
-   <a href="https://npmjs.org/package/@dannywrayuk/describe-shape">
+   <a href="https://bundlephobia.com/package/@dannywrayuk/describe-shape">
     <img src="https://img.shields.io/bundlephobia/min/@dannywrayuk/describe-shape.svg" alt="install size" />
   </a>
   <a href="https://npmjs.org/package/@dannywrayuk/describe-shape">

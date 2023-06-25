@@ -1,134 +1,166 @@
-import { delimiters } from "./constants";
-import { lex } from "./lexer";
+import { namedDelimiters, splitDelimiters } from "./delimiters";
+import { extractWords } from "./extractWords";
 import { capitalised, spongeBobbed } from "./wordStyles";
 
-type Options = {
+export type Options = {
   delimiter?: string;
   actOnFirstWord?: boolean;
   wordOperation?: (input: string) => string;
 };
 
 const calculate = (input: string[], options: Options) => {
+  if (!input || input.length === 0) return "";
+
   const delimiter = options.delimiter ?? "";
   const wordOperation = options.wordOperation ?? ((input) => input);
 
+  if (options.actOnFirstWord) {
+    input[0] = wordOperation(input[0]);
+  }
   const reducer = (total: string, current: string) => {
     return total + delimiter + wordOperation(current);
   };
-  if (options.actOnFirstWord) {
-    return input.reduce(reducer, "");
-  }
+
   return input.reduce(reducer);
 };
 
-export const camelCase = (input: string) => {
-  const parsedString = lex(input);
+export const custom = (
+  input: string,
+  options: Options & { splitDelimiters?: string }
+) => {
+  const parsedString = extractWords(
+    input,
+    options.splitDelimiters || splitDelimiters
+  );
+  return calculate(parsedString, options);
+};
+
+export const camel = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
     wordOperation: capitalised,
   });
 };
 
-export const pascalCase = (input: string) => {
-  const parsedString = lex(input);
+export const pascal = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
     wordOperation: capitalised,
     actOnFirstWord: true,
   });
 };
 
-export const kebabCase = (input: string) => {
-  const parsedString = lex(input);
+export const kebab = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
-    delimiter: delimiters.kebab,
+    delimiter: namedDelimiters.kebab,
   });
 };
 
-export const trainCase = (input: string) => {
-  const parsedString = lex(input);
+export const train = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
     wordOperation: capitalised,
-    delimiter: delimiters.kebab,
+    delimiter: namedDelimiters.kebab,
     actOnFirstWord: true,
   });
 };
 
-export const upperKebabCase = (input: string) => {
-  const parsedString = lex(input);
+export const upperKebab = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
-    delimiter: delimiters.kebab,
+    delimiter: namedDelimiters.kebab,
     actOnFirstWord: true,
   }).toUpperCase();
 };
 
-export const snakeCase = (input: string) => {
-  const parsedString = lex(input);
+export const snake = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
-    delimiter: delimiters.snake,
+    delimiter: namedDelimiters.snake,
   });
 };
 
-export const snakeTrainCase = (input: string) => {
-  const parsedString = lex(input);
+export const snakeTrain = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
     wordOperation: capitalised,
-    delimiter: delimiters.snake,
+    delimiter: namedDelimiters.snake,
     actOnFirstWord: true,
   });
 };
 
-export const upperSnakeCase = (input: string) => {
-  const parsedString = lex(input);
+export const upperSnake = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
-    delimiter: delimiters.snake,
+    delimiter: namedDelimiters.snake,
     actOnFirstWord: true,
   }).toUpperCase();
 };
 
-export const nocase = (input: string) => {
-  const parsedString = lex(input);
+export const none = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {});
 };
 
-export const upperCase = (input: string) => {
-  const parsedString = lex(input);
+export const upper = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {}).toUpperCase();
 };
 
-export const spaceCase = (input: string) => {
-  const parsedString = lex(input);
+export const spaced = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
-    delimiter: delimiters.space,
+    delimiter: namedDelimiters.space,
   });
 };
 
-export const upperSpaceCase = (input: string) => {
-  const parsedString = lex(input);
+export const upperSpaced = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
-    delimiter: delimiters.space,
+    delimiter: namedDelimiters.space,
   }).toUpperCase();
 };
 
-export const titleCase = (input: string) => {
-  const parsedString = lex(input);
+export const title = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
     wordOperation: capitalised,
-    delimiter: delimiters.space,
+    delimiter: namedDelimiters.space,
     actOnFirstWord: true,
   });
 };
 
-export const sentenceCase = (input: string) => {
-  const parsedString = lex(input);
-  const spaceCase = calculate(parsedString, {
-    delimiter: delimiters.space,
+export const sentence = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
+  const spaced = calculate(parsedString, {
+    delimiter: namedDelimiters.space,
   });
-  return capitalised(spaceCase);
+  return capitalised(spaced);
 };
 
-export const spongeBobCase = (input: string) => {
-  const parsedString = lex(input);
-  const spaceCase = calculate(parsedString, {
-    delimiter: delimiters.space,
+export const spongeBob = (input: string) => {
+  const parsedString = extractWords(input, splitDelimiters);
+  const spaced = calculate(parsedString, {
+    delimiter: namedDelimiters.space,
   });
-  return spongeBobbed(spaceCase);
+  return spongeBobbed(spaced);
+};
+
+export const casing = {
+  camel,
+  pascal,
+  kebab,
+  train,
+  upperKebab,
+  snake,
+  snakeTrain,
+  upperSnake,
+  none,
+  upper,
+  spaced,
+  upperSpaced,
+  title,
+  sentence,
+  spongeBob,
 };

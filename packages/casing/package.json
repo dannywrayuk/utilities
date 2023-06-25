@@ -4,8 +4,15 @@
   "author": "dannywrayuk",
   "version": "1.0.0",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "casing",
+    "transformation",
+    "variables",
+    "strings"
+  ],
   "main": "dist/index.js",
+  "bin": "dist/script.js",
+  "types": "dist/index.d.ts",
   "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/casing#readme",
   "repository": {
     "type": "git",

@@ -18,7 +18,7 @@
 
 <br />
 
-Short blurb about the project
+Easily swap between common variable name casing formats with these utility functions. Many of the most common formats have an implementation and can be used as both an input or output. Import them into your projects or use them on the command line!
 
 ## Install
 

@@ -1,27 +1,28 @@
 {
-  "name": "@dannywrayuk/describe-shape",
-  "description": "Simple object descriptions, perfect for your logs",
+  "name": "@dannywrayuk/casing",
+  "description": "Convert the casing of a string to common alternatives",
   "author": "dannywrayuk",
-  "version": "1.0.7",
+  "version": "1.0.1",
   "license": "MIT",
   "keywords": [
-    "object",
-    "types",
-    "shape",
-    "logs"
+    "casing",
+    "transformation",
+    "variables",
+    "strings"
   ],
   "main": "dist/index.js",
+  "bin": "dist/script.js",
   "types": "dist/index.d.ts",
-  "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/describe-shape",
+  "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/casing#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dannywrayuk/utilities.git"
+    "url": "git+https://github.com/dannywrayuk/utilites.git"
   },
   "files": [
     "/dist"
   ],
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "tsc",
     "lint": "eslint \"**/*.ts*\""
   },

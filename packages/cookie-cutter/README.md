@@ -8,7 +8,7 @@
   <a href="https://npmjs.org/package/@dannywrayuk/cookie-cutter">
     <img src="https://img.shields.io/npm/v/@dannywrayuk/cookie-cutter.svg" alt="version" />
   </a>
-   <a href="https://npmjs.org/package/@dannywrayuk/cookie-cutter">
+   <a href="https://bundlephobia.com/package/@dannywrayuk/cookie-cutter">
     <img src="https://img.shields.io/bundlephobia/min/@dannywrayuk/cookie-cutter.svg" alt="install size" />
   </a>
   <a href="https://npmjs.org/package/@dannywrayuk/cookie-cutter">

@@ -2,7 +2,7 @@
   "name": "@dannywrayuk/casing",
   "description": "Convert the casing of a string to common alternatives",
   "author": "dannywrayuk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "keywords": [
     "casing",

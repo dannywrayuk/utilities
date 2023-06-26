@@ -33,6 +33,5 @@
     "ts-jest": "^29.1.0",
     "tsconfig": "*",
     "typescript": "^5.0.4"
-  },
-  "dependencies": {}
+  }
 }

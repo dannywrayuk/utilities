@@ -29,3 +29,5 @@ yarn-error.log*
 
 dist
 .TEST_OUTPUT
+.yarn
+.pnp.*

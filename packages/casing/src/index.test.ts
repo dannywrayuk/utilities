@@ -9,9 +9,9 @@ it("convert to Custom$Case", () => {
   const output = stringStyle.custom("hello-there", {
     delimiter: "$",
     wordOperation: () => "yes",
-    actOnFirstWord: true,
+    excludeFirstWord: true,
   });
-  expect(output).toBe("yes$yes");
+  expect(output).toBe("hello$yes");
 });
 
 it("convert to camelCase", () => {

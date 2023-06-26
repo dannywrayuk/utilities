@@ -4,7 +4,7 @@ import { capitalised, spongeBobbed } from "./wordStyles";
 
 export type Options = {
   delimiter?: string;
-  actOnFirstWord?: boolean;
+  excludeFirstWord?: boolean;
   wordOperation?: (input: string) => string;
 };
 
@@ -14,7 +14,7 @@ const calculate = (input: string[], options: Options) => {
   const delimiter = options.delimiter ?? "";
   const wordOperation = options.wordOperation ?? ((input) => input);
 
-  if (options.actOnFirstWord) {
+  if (!options.excludeFirstWord) {
     input[0] = wordOperation(input[0]);
   }
   const reducer = (total: string, current: string) => {
@@ -39,6 +39,7 @@ export const camel = (input: string) => {
   const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
     wordOperation: capitalised,
+    excludeFirstWord: true,
   });
 };
 
@@ -46,7 +47,6 @@ export const pascal = (input: string) => {
   const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
     wordOperation: capitalised,
-    actOnFirstWord: true,
   });
 };
 
@@ -62,7 +62,6 @@ export const train = (input: string) => {
   return calculate(parsedString, {
     wordOperation: capitalised,
     delimiter: namedDelimiters.kebab,
-    actOnFirstWord: true,
   });
 };
 
@@ -70,7 +69,6 @@ export const upperKebab = (input: string) => {
   const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
     delimiter: namedDelimiters.kebab,
-    actOnFirstWord: true,
   }).toUpperCase();
 };
 
@@ -86,7 +84,6 @@ export const snakeTrain = (input: string) => {
   return calculate(parsedString, {
     wordOperation: capitalised,
     delimiter: namedDelimiters.snake,
-    actOnFirstWord: true,
   });
 };
 
@@ -94,7 +91,6 @@ export const upperSnake = (input: string) => {
   const parsedString = extractWords(input, splitDelimiters);
   return calculate(parsedString, {
     delimiter: namedDelimiters.snake,
-    actOnFirstWord: true,
   }).toUpperCase();
 };
 
@@ -127,7 +123,6 @@ export const title = (input: string) => {
   return calculate(parsedString, {
     wordOperation: capitalised,
     delimiter: namedDelimiters.space,
-    actOnFirstWord: true,
   });
 };
 

@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "lint": "turbo run lint",
-    "new-package": "cookie-cutter ./templates/example-package ./packages"
+    "new-package": "cookie-cutter ./templates/example-package ./packages",
+    "nuke": "rm -rf **/{node_modules,coverage,dist,.turbo,yarn-error.log}"
   },
   "devDependencies": {
     "@dannywrayuk/cookie-cutter": "^1.0.4",

@@ -2,7 +2,7 @@
   "name": "@dannywrayuk/cookie-cutter",
   "description": "Boilerplate generation based on template directories",
   "author": "dannywrayuk",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "license": "MIT",
   "keywords": [
     "template",
@@ -26,7 +26,6 @@
     "lint": "eslint \"**/*.ts*\""
   },
   "devDependencies": {
-    "@types/handlebars-helpers": "^0.5.3",
     "@types/jest": "^29.5.2",
     "@types/node": "^20.2.5",
     "@types/prompts": "^2.4.4",
@@ -38,8 +37,8 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "@dannywrayuk/casing": "^1.0.1",
     "handlebars": "^4.7.7",
-    "handlebars-helpers": "^0.10.0",
     "prompts": "^2.4.2",
     "yargs": "^17.7.2"
   }

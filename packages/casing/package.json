@@ -29,10 +29,10 @@
   "devDependencies": {
     "@types/jest": "^29.5.2",
     "@types/node": "^20.2.5",
-    "eslint-config-custom": "*",
+    "eslint-config-custom": "workspace:*",
     "jest": "^29.5.0",
     "ts-jest": "^29.1.0",
-    "tsconfig": "*",
+    "tsconfig": "workspace:*",
     "typescript": "^5.0.4"
   }
 }

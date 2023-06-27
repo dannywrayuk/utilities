@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { Choice, PromptType } from "prompts";
+import { PromptType } from "prompts";
 import { configFileName } from "./constants";
 import { safe } from "./safe";
 
@@ -33,13 +33,16 @@ export const getTemplate = (templateArg: string) => {
 
   if (folders?.length > 1)
     return {
-      directory: path.join(templateArg, folders[0]),
+      directory: templateArg,
       additionalQuestions: [
         {
           type: "select" as PromptType,
           name: "templateName",
           message: "Select a Template",
-          choices: folders as unknown as Choice[],
+          choices: folders.map((folder: string) => ({
+            title: folder,
+            value: folder,
+          })),
         },
       ],
     };

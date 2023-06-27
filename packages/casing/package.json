@@ -2,7 +2,7 @@
   "name": "@dannywrayuk/casing",
   "description": "Convert the casing of a string to common alternatives",
   "author": "dannywrayuk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "keywords": [
     "casing",
@@ -29,11 +29,11 @@
   "devDependencies": {
     "@types/jest": "^29.5.2",
     "@types/node": "^20.2.5",
-    "eslint-config-custom": "*",
+    "eslint": "^7.32.0",
+    "eslint-config-custom": "workspace:*",
     "jest": "^29.5.0",
     "ts-jest": "^29.1.0",
-    "tsconfig": "*",
+    "tsconfig": "workspace:*",
     "typescript": "^5.0.4"
-  },
-  "dependencies": {}
+  }
 }

@@ -26,16 +26,19 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Version Bump
+        run: yarn workspace @dannywrayuk/${{ inputs.package }} version ${{ inputs.type || 'patch'}}
+
+      - name: Store New Version
+        run: echo "NEW_VERSION=$(node -p "require('./packages/${{ inputs.package }}/package.json').version")" >> $GITHUB_ENV
+
+      - name: Add Git Tag
         run: |
-          yarn config set version-tag-prefix "${{ inputs.package }}v"
-          yarn config set version-git-message "🚀 Release ${{ inputs.package }} v%s"
-          yarn workspace @dannywrayuk/${{ inputs.package }} version --${{ inputs.type || 'patch'}}
+          git add .
+          git commit -m "🚀 Release ${{ inputs.package }} v${{ env.NEW_VERSION }}"
+          git tag "${{ inputs.package }}v${{ env.NEW_VERSION }}"
 
       - name: Push Bump
         run: git pull --rebase && git push && git push --tags
-
-      # - name: Store New Version
-      #   run: echo "NEW_VERSION=$(yarn workspace @dannywrayuk/${{ inputs.package }} version --non-interactive| grep "Current version:" | awk '{ print $4 }')" >> $GITHUB_ENV
 
       # Action is deprecated
       # - name: Create Release

@@ -86,10 +86,13 @@ describe("when path is not a valid template", () => {
     const template = getTemplate(mockTemplatePath);
 
     expect(template).toEqual({
-      directory: path.join(mockTemplatePath, mockDirectory),
+      directory: path.join(mockTemplatePath),
       additionalQuestions: [
         {
-          choices: ["MOCK_DIRECTORY", "MOCK_DIRECTORY2"],
+          choices: [
+            { title: "MOCK_DIRECTORY", value: "MOCK_DIRECTORY" },
+            { title: "MOCK_DIRECTORY2", value: "MOCK_DIRECTORY2" },
+          ],
           message: "Select a Template",
           name: "templateName",
           type: "select",

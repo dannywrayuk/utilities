@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { Choice, PromptType } from "prompts";
+import { PromptType } from "prompts";
 import { configFileName } from "./constants";
 import { safe } from "./safe";
 

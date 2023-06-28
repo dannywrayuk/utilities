@@ -34,6 +34,5 @@ dist
 !.yarn/plugins
 !.yarn/releases
 !.yarn/sdks
-!.yarn/versions
 yarn-debug.log*
 yarn-error.log*

@@ -33,9 +33,9 @@ jobs:
 
       - name: Add Git Tag
         run: |
-          git tag "${{ inputs.package }}v"
           git add .
           git commit -m "🚀 Release ${{ inputs.package }} v${{ env.NEW_VERSION }}"
+          git tag "${{ inputs.package }}v${{ env.NEW_VERSION }}"
 
       - name: Push Bump
         run: git pull --rebase && git push && git push --tags

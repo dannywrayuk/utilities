@@ -463,12 +463,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@dannywrayuk/casing@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@dannywrayuk/casing@npm:1.0.1"
+"@dannywrayuk/casing@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@dannywrayuk/casing@npm:1.0.2"
   bin:
     casing: dist/script.js
-  checksum: e9e75b990d2e22510aa811d8b3f7c662a68e834b3fe2bbfbca90f5b6e229bd21d6c888e75b0f31b976d70915b883dcb623e2555d024d180403f90691fed4ede2
+  checksum: 035719c23d8acac05ca64260f5ff977ff4fd9eb806bf0af70e891b5c29b31f8c0bfd476bfbe179a25049c19a141cce26b9b2a773d87dfcc5ea36bc16393a2045
   languageName: node
   linkType: hard
 
@@ -507,7 +507,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@dannywrayuk/cookie-cutter@workspace:packages/cookie-cutter"
   dependencies:
-    "@dannywrayuk/casing": ^1.0.1
+    "@dannywrayuk/casing": ^1.0.2
     "@types/jest": ^29.5.2
     "@types/node": ^20.2.5
     "@types/prompts": ^2.4.4

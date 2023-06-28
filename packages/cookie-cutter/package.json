@@ -38,7 +38,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "@dannywrayuk/casing": "^1.0.1",
+    "@dannywrayuk/casing": "^1.0.2",
     "handlebars": "^4.7.7",
     "prompts": "^2.4.2",
     "yargs": "^17.7.2"

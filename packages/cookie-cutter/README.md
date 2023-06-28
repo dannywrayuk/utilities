@@ -57,7 +57,7 @@ Where `template-directory` is the path of a template containing a valid `templat
 ### The Template
 
 The template must be contained inside a directory and contain all the files and folders that should be created at the output. The file names, directories, and file content may all contain [handlebar expressions](https://handlebarsjs.com/guide/#simple-expressions) that will be resolved using data collected from user prompts.
-Helpers are available to help with the generation of data from the user input, eg changing the casing of the input. Currently [string](https://github.com/helpers/handlebars-helpers#string) and [date](https://github.com/helpers/handlebars-helpers#date) are used from [handlebar-helpers](https://github.com/helpers/handlebars-helpers)
+Helpers are available to help with the generation of data from the user input, eg changing the casing of the input. For this, [casing](https://github.com/dannywrayuk/utilities/tree/main/packages/casing) is used as a helper and `{{year}}`,`{{month}}` and `{{day}}` are implemented internally.
 
 ### Template Config
 

@@ -1,5 +1,4 @@
 const [diff] = process.argv.slice(2);
-console.log(diff);
 const changedFiles = diff.split(",");
 
 const changedPackages = new Set();
@@ -9,5 +8,4 @@ changedFiles.forEach((file) => {
     changedPackages.add(matches[1]);
   }
 });
-console.log("changed packages:");
 console.log(Array.from(changedPackages));

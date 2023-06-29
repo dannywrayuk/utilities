@@ -8,11 +8,21 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    outputs:
+      packageArray: ${{ steps.changed-packages.outputs.packageArray }}
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
       - id: git-diff
-        run: echo "files_changed=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | tr '\n' ','| sed 's/,$//')" >> $GITHUB_OUTPUT
+        run: echo "filesChanged=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | tr '\n' ','| sed 's/,$//')" >> $GITHUB_OUTPUT
 
-      - run: node .github/actions/diffToPackageList "${{ steps.git-diff.outputs.files_changed }}"
+      - id: changed-packages
+        run: echo "packageArray=$(node .github/actions/diffToPackageList \"${{ steps.git-diff.outputs.filesChanged }}\")"  >> $GITHUB_OUTPUT
+  test-matrix:
+    strategy:
+      matrix:
+        package: ${{needs.test.outputs.packageArray}}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ matrix.package }}

@@ -20,6 +20,7 @@ jobs:
       - id: changed-packages
         run: echo "packageArray=$(node .github/actions/diffToPackageList \"${{ steps.git-diff.outputs.filesChanged }}\")"  >> $GITHUB_OUTPUT
   test-matrix:
+    needs: test
     strategy:
       matrix:
         package: ${{needs.test.outputs.packageArray}}

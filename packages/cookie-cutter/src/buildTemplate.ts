@@ -38,3 +38,4 @@ export const buildTemplate = (config: TemplateConfig) => {
     path.join(config.destinationDirectory, "template.config.json")
   );
 };
+hello;

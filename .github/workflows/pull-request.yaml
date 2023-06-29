@@ -9,4 +9,4 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 2
-      - run: node ./.github/actions/diffToPackageList.js $(git diff --name-only main HEAD)
+      - run: node ./.github/actions/diffToPackageList.js $(git diff --name-only origin/main HEAD)

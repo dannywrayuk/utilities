@@ -23,7 +23,7 @@ jobs:
     needs: test
     strategy:
       matrix:
-        package: ${{needs.test.outputs.packageArray}}
+        package: ${{fromJson(needs.test.outputs.packageArray)}}
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{ matrix.package }}

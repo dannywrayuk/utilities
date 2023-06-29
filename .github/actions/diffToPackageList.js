@@ -1,4 +1,3 @@
-console.log(process.argv);
-const diff = process.argv.split(2);
+const diff = process.argv.slice(2);
 console.log("hello");
 console.log(diff);

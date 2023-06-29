@@ -6,4 +6,5 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: node ./.github/actions/diffToPackageList.js $(git diff --name-only)

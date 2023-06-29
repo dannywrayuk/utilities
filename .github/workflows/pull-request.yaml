@@ -6,4 +6,4 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: node -p "console.log('Hello World!!')"
+      - run: node ./.github/actions/diffToPackageList $(git diff --name-only main HEAD)

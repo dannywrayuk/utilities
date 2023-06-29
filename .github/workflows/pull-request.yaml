@@ -1,0 +1,7 @@
+name: pull-request
+on:
+  push:
+
+jobs:
+  test:
+    - run: node -p "console.log('Hello World!!')"

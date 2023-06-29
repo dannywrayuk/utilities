@@ -4,4 +4,6 @@ on:
 
 jobs:
   test:
-    - run: node -p "console.log('Hello World!!')"
+    runs-on: ubuntu-latest
+    steps:
+      - run: node -p "console.log('Hello World!!')"

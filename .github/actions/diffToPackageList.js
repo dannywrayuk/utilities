@@ -1,5 +1,8 @@
-const [diff] = process.argv.slice(2);
-const changedFiles = diff.split(",");
+const fs = require("node:fs");
+
+let GIT_DIFF = fs.readFileSync("GIT_DIFF").toString();
+
+const changedFiles = GIT_DIFF.split(",");
 
 const changedPackages = new Set();
 changedFiles.forEach((file) => {
@@ -8,4 +11,4 @@ changedFiles.forEach((file) => {
     changedPackages.add(matches[1]);
   }
 });
-console.log(Array.from(changedPackages));
+console.log("changed_packages=" + JSON.stringify(Array.from(changedPackages)));

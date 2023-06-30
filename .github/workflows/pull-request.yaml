@@ -32,6 +32,7 @@ jobs:
       matrix:
         package: ${{fromJson(needs.test.outputs.packageArray)}}
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -40,5 +41,6 @@ jobs:
           cache: "yarn"
       - name: Install project dependencies
         run: yarn
-
       - run: echo ${{ matrix.package }}
+      - run: yarn workspace @dannywrayuk/${{ matrix.package }} quality-checks
+      - run: yarn workspace @dannywrayuk/${{ matrix.package }} build

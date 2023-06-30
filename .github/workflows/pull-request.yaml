@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 2
       - run: git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | tee GIT_DIFF
       - id: changed-packages
-        run: node .github/actions/diffToPackageList | tee $GITHUB_OUTPUT
+        run: node .github/actions/diffToPackageList >> $GITHUB_OUTPUT
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:

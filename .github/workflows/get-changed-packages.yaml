@@ -1,3 +1,4 @@
+name: Get Changed Packages
 on:
   workflow_call:
     outputs:

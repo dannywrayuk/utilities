@@ -6,24 +6,9 @@ on:
       - synchronize
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    outputs:
-      packageArray: ${{ steps.changed-packages.outputs.packageArray }}
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 2
-      - run: git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | tee GIT_DIFF
-      - id: changed-packages
-        run: node .github/actions/diffToPackageList >> $GITHUB_OUTPUT
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-          cache: "yarn"
-      - name: Install project dependencies
-        run: yarn
+  get-changed-packages:
+    uses: ./.github/workflows/get-changed-packages.yaml
+    secrets: inherit
 
   test-matrix:
     needs: test

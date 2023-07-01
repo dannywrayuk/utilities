@@ -1,0 +1,23 @@
+name: Package Pull Request Checks
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths:
+      - packages/**
+
+jobs:
+  get-changed-packages:
+    uses: ./.github/workflows/get-changed-packages.yaml
+    secrets: inherit
+
+  quality-checks:
+    needs: get-changed-packages
+    strategy:
+      matrix:
+        package: ${{fromJson(needs.get-changed-packages.outputs.packageArray)}}
+    uses: ./.github/workflows/quality-checks.yaml
+    secrets: inherit
+    with:
+      package: ${{ matrix.package }}

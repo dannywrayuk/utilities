@@ -1,0 +1,61 @@
+name: Package Push Deploy
+on:
+  push:
+    branches:
+      - main
+      - workflow-v2
+    paths:
+      - packages/**
+
+jobs:
+  get-changed-packages:
+    uses: ./.github/workflows/get-changed-packages.yaml
+    secrets: inherit
+
+  check-versions:
+    needs: get-changed-packages
+    strategy:
+      matrix:
+        package: ${{fromJson(needs.get-changed-packages.outputs.packageArray)}}
+    uses: ./.github/workflows/check-version.yaml
+    secrets: inherit
+    with:
+      package: ${{ matrix.package }}
+
+  quality-checks:
+    needs:
+      - get-changed-packages
+      - check-versions
+    strategy:
+      matrix:
+        package: ${{fromJson(needs.get-changed-packages.outputs.packageArray)}}
+    uses: ./.github/workflows/quality-checks.yaml
+    secrets: inherit
+    with:
+      package: ${{ matrix.package }}
+      upload-build-artifact: true
+
+  deploy:
+    needs:
+      - get-changed-packages
+      - quality-checks
+    strategy:
+      matrix:
+        package: ${{fromJson(needs.get-changed-packages.outputs.packageArray)}}
+    uses: ./.github/workflows/deploy-from-artifact.yaml
+    secrets: inherit
+    with:
+      package: ${{ matrix.package }}
+
+  update-latest-deployment-tag:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Update Tag
+        run: git tag -f latest-deployment
+
+      - name: Push Tag
+        run: git push -f origin latest-deployment

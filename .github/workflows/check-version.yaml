@@ -1,0 +1,29 @@
+name: Check Version
+on:
+  workflow_call:
+    inputs:
+      package:
+        required: true
+        type: string
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Yarn
+        run: yarn
+
+      - name: Get Latest Version (NPM)
+        run: yarn npm info @dannywrayuk/${{ inputs.package }}@latest --fields version --json > LATEST_VERSION
+
+      - name: Compare with current
+        run: node ./.github/actions/checkVersion.js

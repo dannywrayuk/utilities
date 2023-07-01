@@ -1,0 +1,45 @@
+name: Get Changed Packages
+on:
+  workflow_call:
+    outputs:
+      packageArray:
+        description: "An array of package names with changes"
+        value: ${{ jobs.get-changed-packages.outputs.packageArray }}
+
+jobs:
+  get-changed-packages:
+    runs-on: ubuntu-latest
+    outputs:
+      packageArray: ${{ steps.changed-packages.outputs.packageArray }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get Event SHA
+        id: event-sha
+        run: |
+          if [[ ${{ github.event_name }} == "pull_request" ]]; then
+            echo "event_name: pull_request"
+            echo "base=${{ github.event.pull_request.base.sha }}" >> $GITHUB_OUTPUT
+            echo "head=${{ github.event.pull_request.head.sha }}" >> $GITHUB_OUTPUT
+          elif [[ ${{ github.event_name }} == "push" ]]; then
+            echo "event_name: push"
+            echo "base=$(git rev-list -1 latest-deployment)" >> $GITHUB_OUTPUT
+            echo "head=${{ github.event.after }}" >> $GITHUB_OUTPUT
+          else
+            echo "Unhandled event type: ${{ github.event_name }}" 1>&2
+            exit 1
+          fi
+
+      - name: Git Diff
+        run: >
+          git diff --name-only
+          ${{ steps.event-sha.outputs.base }}
+          ${{ steps.event-sha.outputs.head }}
+          | tee GIT_DIFF
+
+      - name: Parse Git Diff Output
+        id: changed-packages
+        run: node .github/actions/diffToPackageArray >> $GITHUB_OUTPUT

@@ -11,7 +11,7 @@ jobs:
     secrets: inherit
 
   test-matrix:
-    needs: test
+    needs: get-changed-packages
     strategy:
       matrix:
         package: ${{fromJson(needs.test.outputs.packageArray)}}

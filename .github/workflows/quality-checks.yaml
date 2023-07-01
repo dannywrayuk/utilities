@@ -7,7 +7,6 @@ on:
 
 jobs:
   quality-checks:
-    name: Quality Checks (${{ inputs.package }})
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -19,8 +18,8 @@ jobs:
           node-version: "18"
           cache: "yarn"
 
-      - name: Yarn Install
-        run: yarn --prefer-offline
+      - name: Yarn
+        run: yarn
 
       - name: Lint
         run: yarn workspace @dannywrayuk/${{ inputs.package }} lint

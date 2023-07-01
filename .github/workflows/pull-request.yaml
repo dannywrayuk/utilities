@@ -7,24 +7,15 @@ on:
 
 jobs:
   get-changed-packages:
-    uses: ./.github/workflows/get-changed-packages.yaml
+    uses: ./.github/actions/get-changed-packages.yaml
     secrets: inherit
 
-  test-matrix:
+  quality-checks:
     needs: get-changed-packages
     strategy:
       matrix:
         package: ${{fromJson(needs.get-changed-packages.outputs.packageArray)}}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-          cache: "yarn"
-      - name: Install project dependencies
-        run: yarn
-      - run: echo ${{ matrix.package }}
-      - run: yarn workspace @dannywrayuk/${{ matrix.package }} lint
-      - run: yarn workspace @dannywrayuk/${{ matrix.package }} test
-      - run: yarn workspace @dannywrayuk/${{ matrix.package }} build
+    uses: ./.github/actions/quality-checks.yaml
+    secrets: inherit
+    with:
+      package: ${{ matrix.package }}

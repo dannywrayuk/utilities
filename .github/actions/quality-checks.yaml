@@ -1,32 +1,29 @@
-on:
-  workflow_call:
-    inputs:
-      package:
-        required: true
-        type: string
+name: Quality Checks
+description: Runs standard quality checks on a given package
+  inputs:
+    package:
+      required: true
+      type: string
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v3
 
-jobs:
-  quality-checks:
-    name: Quality Checks (${{ inputs.package }})
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18"
+        cache: "yarn"
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-          cache: "yarn"
+    - name: Yarn
+      run: yarn --prefer-offline
 
-      - name: Yarn Install
-        run: yarn --prefer-offline
+    - name: Lint
+      run: yarn workspace @dannywrayuk/${{ inputs.package }} lint
 
-      - name: Lint
-        run: yarn workspace @dannywrayuk/${{ inputs.package }} lint
+    - name: Test
+      run: yarn workspace @dannywrayuk/${{ inputs.package }} test
 
-      - name: Test
-        run: yarn workspace @dannywrayuk/${{ inputs.package }} test
-
-      - name: Build
-        run: yarn workspace @dannywrayuk/${{ inputs.package }} build
+    - name: Build
+      run: yarn workspace @dannywrayuk/${{ inputs.package }} build

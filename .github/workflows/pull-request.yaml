@@ -7,7 +7,7 @@ on:
 
 jobs:
   get-changed-packages:
-    uses: ./.github/actions/get-changed-packages.yaml
+    uses: actions/get-changed-packages@v1
     secrets: inherit
 
   quality-checks:
@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         package: ${{fromJson(needs.get-changed-packages.outputs.packageArray)}}
-    uses: ./.github/actions/quality-checks.yaml
+    uses: actions/quality-checks@v1
     secrets: inherit
     with:
       package: ${{ matrix.package }}

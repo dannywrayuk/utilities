@@ -1,0 +1,47 @@
+name: Package Push Deploy
+on:
+  push:
+    branches:
+      - main
+      - workflow-v2
+    paths:
+      - packages/**
+
+jobs:
+  get-changed-packages:
+    uses: ./.github/workflows/get-changed-packages.yaml
+    secrets: inherit
+
+  check-versions:
+    needs: get-changed-packages
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: ${{fromJson(needs.get-changed-packages.outputs.packageArray)}}
+    steps:
+      - name: Get Latest Version (NPM)
+        run: yarn npm info @dannywrayuk/${{ matrix.package }}@latest --fields version --json > LATEST_VERSION
+
+      - name: Compare with current
+        run: node ./.github/actions/checkVersion.js
+
+  quality-checks:
+    needs: check-versions
+    strategy:
+      matrix:
+        package: ${{fromJson(needs.get-changed-packages.outputs.packageArray)}}
+    uses: ./.github/workflows/quality-checks.yaml
+    secrets: inherit
+    with:
+      package: ${{ matrix.package }}
+      upload-build-artifact: true
+
+  deploy:
+    needs: quality-checks
+    strategy:
+      matrix:
+        package: ${{fromJson(needs.get-changed-packages.outputs.packageArray)}}
+    uses: ./.github/workflows/deploy-from-artifact.yaml
+    secrets: inherit
+    with:
+      package: ${{ matrix.package }}

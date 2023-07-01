@@ -1,9 +1,11 @@
-name: pull-request
+name: Package Pull Request Checks
 on:
   pull_request:
     types:
       - opened
       - synchronize
+    paths:
+      - packages/**
 
 jobs:
   get-changed-packages:

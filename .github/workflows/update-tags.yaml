@@ -1,0 +1,28 @@
+name: Update Tags
+on:
+  workflow_call:
+    inputs:
+      packageArray:
+        required: true
+        type: string
+
+jobs:
+  update-tags:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Add Tag For Each Package
+        run: >
+          for package in $(echo '${{ inputs.packageArray }}' | jq -r @sh | xargs); do
+            TAG_NAME=$package-v$(cat "packages/$package/package.json" | jq -r ".version")
+            echo Adding tag: $TAG_NAME
+            git tag $TAG_NAME
+          done
+
+      - name: Update Last Deployment Tag
+        run: git tag -f last-deployment
+
+      - name: Push Tags
+        run: git push -f origin last-deployment && git push --tags

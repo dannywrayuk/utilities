@@ -26,7 +26,7 @@ jobs:
             echo "head=${{ github.event.pull_request.head.sha }}" >> $GITHUB_OUTPUT
           elif [[ ${{ github.event_name }} == "push" ]]; then
             echo "event_name: push"
-            echo "base=$(git rev-list -1 latest-deployment)" >> $GITHUB_OUTPUT
+            echo "base=$(git rev-list -1 last-deployment)" >> $GITHUB_OUTPUT
             echo "head=${{ github.event.after }}" >> $GITHUB_OUTPUT
           else
             echo "Unhandled event type: ${{ github.event_name }}" 1>&2

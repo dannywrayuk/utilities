@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - workflow-v2
     paths:
       - packages/**
 
@@ -47,15 +46,11 @@ jobs:
     with:
       package: ${{ matrix.package }}
 
-  update-latest-deployment-tag:
-    needs: deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-
-      - name: Update Tag
-        run: git tag -f latest-deployment
-
-      - name: Push Tag
-        run: git push -f origin latest-deployment
+  update-tags:
+    needs:
+      - get-changed-packages
+      - deploy
+    uses: ./.github/workflows/update-tags.yaml
+    secrets: inherit
+    with:
+      packageArray: ${{needs.get-changed-packages.outputs.packageArray}}

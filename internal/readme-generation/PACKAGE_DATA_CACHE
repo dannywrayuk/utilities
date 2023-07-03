@@ -1,0 +1,3 @@
+name=casing description="Convert the casing of a string to common alternatives"
+name=cookie-cutter description="Boilerplate generation based on template directories"
+name=describe-shape description="Simple object descriptions, perfect f

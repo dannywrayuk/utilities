@@ -1,0 +1,54 @@
+name: Generate Root README
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-cache:
+    runs-on: ubuntu-latest
+    outputs:
+      packageData: ${{ steps.get-package-data.outputs.packageData }}
+      cacheResult: ${{ steps.compare-with-cache.outputs.cache }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Get Package Data
+        id: get-package-data
+        run: >
+          for package in $(ls packages); do
+            echo name="$package" description="$(cat packages/$package/package.json | jq ".description")" >> internal/readme-generation/PACKAGE_DATA
+          done;
+          echo "packageData=$(cat internal/readme-generation/PACKAGE_DATA)" >> $GITHUB_OUTPUT
+
+      - name: Compare With Cache
+        id: compare-with-cache
+        run: >
+          if [[ -z $(diff internal/readme-generation/PACKAGE_DATA internal/readme-generation/PACKAGE_DATA_CACHE) ]]; then
+            echo "cache=hit" >> $GITHUB_OUTPUT
+          else
+            echo "cache=miss" >> $GITHUB_OUTPUT
+          fi
+
+  generate-root-readme:
+    runs-on: ubuntu-latest
+    if: ${{ jobs.check-cache.outputs.cacheResult == "miss"  }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Yarn
+        run: yarn
+
+      - name: Generate Package Content
+        run: >
+          for packageEntry in ${{ jobs.check-cache.outputs.packageData }}; do
+            echo $packageEntry
+          done;

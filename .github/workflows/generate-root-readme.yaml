@@ -16,7 +16,7 @@ jobs:
 
       - name: Get Package Data
         id: get-package-data
-        run: >
+        run: |
           for package in $(ls packages); do
             echo \'--name="$package" --description="$(cat packages/$package/package.json | jq ".description")"\' >> PACKAGE_DATA
           done;
@@ -24,7 +24,7 @@ jobs:
 
       - name: Compare With Cache
         id: compare-with-cache
-        run: >
+        run: |
           if [[  $(echo -n ${{ steps.get-package-data.outputs.packageData }} | sha256sum) == $(cat internal/readme-generation/PACKAGE_DATA_CACHE) ]]; then
             echo "cache=hit" >> $GITHUB_OUTPUT
           else
@@ -49,13 +49,13 @@ jobs:
         run: yarn
 
       - name: Generate Package Content
-        run: >
+        run: |
           for packageEntry in ${{ needs.check-cache.outputs.packageData }}; do
             yarn cookie-cutter templates/root-readme-package-entry . --accept-warning=true $packageEntry
           done;
 
       - name: Generate README
-        run: >
+        run: |
           for section in $(ls | grep 'ROOT_CONTENT'); do
             cat $section >> PACKAGES_SECTION
           done;
@@ -65,7 +65,7 @@ jobs:
         run: echo -n ${{ needs.check-cache.outputs.packageData }} | sha256sum > internal/readme-generation/PACKAGE_DATA_CACHE
 
       - name: Push Changes
-        run: >
+        run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md internal/readme-generation/PACKAGE_DATA_CACHE

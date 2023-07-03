@@ -2,7 +2,7 @@
  <img src="https://github.com/dannywrayuk/utilities/raw/main/packages/{{name}}/assets/logo.svg" alt="Text Logo" width="250" />
 </p>
 
-<h1 align="center">{{titleize name}}</h1>
+<h1 align="center">{{title name}}</h1>
 <p align="center">{{description}}</p>
 <p align="center">
   <a href="https://npmjs.org/package/@dannywrayuk/{{name}}">

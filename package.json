@@ -7,7 +7,7 @@
     "nuke": "rm -rf **/{node_modules,coverage,dist,.turbo,yarn-error.log}"
   },
   "devDependencies": {
-    "@dannywrayuk/cookie-cutter": "^1.0.4",
+    "@dannywrayuk/cookie-cutter": "^1.1.1",
     "@turbo/gen": "^1.9.7",
     "@types/node": "20.2.5",
     "@typescript-eslint/eslint-plugin": "^5.59.8",

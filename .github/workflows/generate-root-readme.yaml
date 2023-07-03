@@ -20,7 +20,7 @@ jobs:
           for package in $(ls packages); do
             echo name="$package" description="$(cat packages/$package/package.json | jq ".description")" >> internal/readme-generation/PACKAGE_DATA
           done;
-          echo "packageData=$(cat internal/readme-generation/PACKAGE_DATA)" >> $GITHUB_OUTPUT
+          echo packageData=$(cat internal/readme-generation/PACKAGE_DATA | paste -d\' /dev/null - /dev/null | paste -sd' ' - ) >>  $GITHUB_OUTPUT
 
       - name: Compare With Cache
         id: compare-with-cache

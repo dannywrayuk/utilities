@@ -59,7 +59,7 @@ jobs:
           for section in $(ls | grep 'ROOT_CONTENT'); do
             cat $section >> PACKAGES_SECTION
           done;
-          yarn cookie-cutter templates/root-readme . --packagesSectionPath=PACKAGES_SECTION
+          yarn cookie-cutter templates/root-readme . --accept-warning=true --packagesSectionPath=PACKAGES_SECTION
 
       - name: Update Cache
         run: echo -n ${{ needs.check-cache.outputs.packageData }} | sha256sum > internal/readme-generation/PACKAGE_DATA_CACHE
@@ -70,3 +70,5 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md internal/readme-generation/PACKAGE_DATA_CACHE
           git commit -m "📚 README updated (automated)"
+          cat internal/readme-generation/PACKAGE_DATA_CACHE
+          cat README.md

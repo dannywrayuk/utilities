@@ -18,7 +18,7 @@ jobs:
         id: get-package-data
         run: >
           for package in $(ls packages); do
-            echo name="$package" description="$(cat packages/$package/package.json | jq ".description")" >> internal/readme-generation/PACKAGE_DATA
+            echo --name="$package" --description="$(cat packages/$package/package.json | jq ".description")" >> internal/readme-generation/PACKAGE_DATA
           done;
           echo packageData=$(cat internal/readme-generation/PACKAGE_DATA | paste -d\' /dev/null - /dev/null | paste -sd' ' - ) >>  $GITHUB_OUTPUT
 
@@ -51,5 +51,6 @@ jobs:
       - name: Generate Package Content
         run: >
           for packageEntry in ${{ needs.check-cache.outputs.packageData }}; do
-            echo $packageEntry
+            yarn cookie-cutter templates/root-readme-package-entry . --accept-warning=true $packageEntry
           done;
+          echo $(ls)

@@ -2,7 +2,7 @@
   "questions": [
     {
       "type": "confirm",
-      "name": "warning",
+      "name": "accept-warning",
       "message": "WARNING: This is intended for internal use, you've been warned, ok?",
       "initial": true
     },

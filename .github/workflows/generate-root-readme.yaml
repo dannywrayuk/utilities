@@ -32,8 +32,9 @@ jobs:
           fi
 
   generate-root-readme:
+    needs: check-cache
     runs-on: ubuntu-latest
-    if: ${{ jobs.check-cache.outputs.cacheResult == "miss"  }}
+    if: ${{ needs.check-cache.outputs.cacheResult == "miss"  }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
@@ -49,6 +50,6 @@ jobs:
 
       - name: Generate Package Content
         run: >
-          for packageEntry in ${{ jobs.check-cache.outputs.packageData }}; do
+          for packageEntry in ${{ needs.check-cache.outputs.packageData }}; do
             echo $packageEntry
           done;

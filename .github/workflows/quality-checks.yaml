@@ -34,7 +34,7 @@ jobs:
         run: yarn workspace @dannywrayuk/${{ inputs.package }} build
 
       - name: Upload Build Artifact
-        if: ${{ inputs.upload-build-artifact == true }}
+        if: inputs.upload-build-artifact == true
         uses: actions/upload-artifact@v3
         with:
           name: ${{ inputs.package }}

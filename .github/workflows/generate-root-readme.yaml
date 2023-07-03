@@ -18,14 +18,14 @@ jobs:
         id: get-package-data
         run: >
           for package in $(ls packages); do
-            echo --name="$package" --description="$(cat packages/$package/package.json | jq ".description")" >> internal/readme-generation/PACKAGE_DATA
+            echo \'--name="$package" --description="$(cat packages/$package/package.json | jq ".description")"\' >> PACKAGE_DATA
           done;
-          echo packageData=$(cat internal/readme-generation/PACKAGE_DATA | paste -d\' /dev/null - /dev/null | paste -sd' ' - ) >>  $GITHUB_OUTPUT
+          echo packageData=$(cat PACKAGE_DATA | paste -sd' ' - ) >>  $GITHUB_OUTPUT
 
       - name: Compare With Cache
         id: compare-with-cache
         run: >
-          if [[ -z $(diff internal/readme-generation/PACKAGE_DATA internal/readme-generation/PACKAGE_DATA_CACHE) ]]; then
+          if [[  $(echo -n ${{ steps.get-package-data.outputs.packageData }} | sha256sum) == $(cat internal/readme-generation/PACKAGE_DATA_CACHE) ]]; then
             echo "cache=hit" >> $GITHUB_OUTPUT
           else
             echo "cache=miss" >> $GITHUB_OUTPUT
@@ -53,4 +53,20 @@ jobs:
           for packageEntry in ${{ needs.check-cache.outputs.packageData }}; do
             yarn cookie-cutter templates/root-readme-package-entry . --accept-warning=true $packageEntry
           done;
-          echo $(ls)
+
+      - name: Generate README
+        run: >
+          for section in $(ls | grep 'ROOT_CONTENT'); do
+            cat $section >> PACKAGES_SECTION
+          done;
+          yarn cookie-cutter templates/root-readme . --packagesSectionPath=PACKAGES_SECTION
+
+      - name: Update Cache
+        run: echo -n ${{ needs.check-cache.outputs.packageData }} | sha256sum > internal/readme-generation/PACKAGE_DATA_CACHE
+
+      - name: Push Changes
+        run: >
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md internal/readme-generation/PACKAGE_DATA_CACHE
+          git commit -m "📚 README updated (automated)"

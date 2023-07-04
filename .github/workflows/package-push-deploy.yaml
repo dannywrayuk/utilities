@@ -5,6 +5,7 @@ on:
       - main
     paths:
       - packages/**
+      - .github/workflows/**
 
 jobs:
   get-changed-packages:

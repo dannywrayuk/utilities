@@ -1,7 +1,6 @@
 import fs from "fs";
 import path from "path";
 import { handlebarsParse } from "./handlebarsParse";
-import { safe } from "./safe";
 
 export type TemplateConfig = {
   templateDirectory: string;
@@ -25,6 +24,7 @@ export const buildTemplate = (config: TemplateConfig) => {
         fs.mkdirSync(elementDestinationPath);
         copyDirectory(elementSourcePath, elementDestinationPath);
       } else {
+        if (element === "template.config.json") return;
         const fileName = parseExpression(element);
         const fileData = fs.readFileSync(elementSourcePath).toString();
         const parsedData = parseExpression(fileData);
@@ -34,7 +34,4 @@ export const buildTemplate = (config: TemplateConfig) => {
   };
 
   copyDirectory(config.templateDirectory, config.destinationDirectory);
-  safe(fs.rmSync)(
-    path.join(config.destinationDirectory, "template.config.json")
-  );
 };

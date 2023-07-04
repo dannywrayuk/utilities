@@ -57,9 +57,6 @@ Where `template-directory` is the path of a template containing a valid `templat
 ### The Template
 
 The template must be contained inside a directory and contain all the files and folders that should be created at the output. The file names, directories, and file content may all contain [handlebar expressions](https://handlebarsjs.com/guide/#simple-expressions) that will be resolved using data collected from user prompts.
-Helpers are available to help with the generation of data from the user input, eg changing the casing of the input. For this, [casing](https://github.com/dannywrayuk/utilities/tree/main/packages/casing) is used as a helper and `{{year}}`,`{{month}}` and `{{day}}` are implemented internally.
-
-### Template Config
 
 All valid templates must contain a `template.config.json` at their root, this is to guide Cookie Cutter when generating your content. This primary purpose of this config is to list the user questions - these are needed to prompt the user and gather required template variables.
 An example config:
@@ -79,10 +76,30 @@ An example config:
 
 where each question in the array is a [prompt type](https://github.com/terkelg/prompts#-types) defined by prompts.
 
+### Helpers
+
+This package includes some simple handlebar expressions to help with the template generation. These are listed below:
+
+| Name                  | Description                                                                                                               | Example                                |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| `@dannywrayuk/casing` | All [casing options](https://github.com/dannywrayuk/utilities/tree/main/packages/casing#options) are available as helpers | `{{ kebab inputString }}}`             |
+| `read`                | Read the contents of a file given its path                                                                                | `{{ read filePath }}`                  |
+| `jsonParse`           | Parse a JSON string                                                                                                       | `{{ jsonParse '{"hello: "world"}' }}`  |
+| `split`               | Splits a string at each of the given character                                                                            | `{{ split "," "a,b,c,d" }}`            |
+| `join`                | Joins an array into a string using the given character as a delimiter                                                     | `{{ join "," "a" "b" "c" "d" }}`       |
+| `trim`                | Trims whitespace from the start and end of a string                                                                       | `{{ trim "   spaced out   " }}`        |
+| `replace`             | Replaces all of a character with another in the supplied string                                                           | `{{ replace "a" "e" "man with van" }}` |
+| `year`                | Inserts the current year                                                                                                  | `{{ year }}`                           |
+| `month`               | Inserts the current month                                                                                                 | `{{ month }}`                          |
+| `day`                 | Inserts the current day                                                                                                   | `{{ day }}`                            |
+| `debug`               | Logs debug information to the console                                                                                     | `{{ debug "help" }}`                   |
+
 ## Options
 
+Call the package like so
+
 ```
-$ @dannywrayuk/cookie-cutter <template-directory> <output-directory> <...extra>
+$ cookie-cutter <template-directory> <output-directory> <...extra>
 ```
 
 ### template-directory

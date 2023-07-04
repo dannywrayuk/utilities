@@ -3,4 +3,5 @@ module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
   watchPathIgnorePatterns: [".TEST_OUTPUT"],
+  coveragePathIgnorePatterns: ["handlebarsParse.ts"],
 };

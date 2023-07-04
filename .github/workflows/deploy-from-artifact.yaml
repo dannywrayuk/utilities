@@ -27,7 +27,7 @@ jobs:
         with:
           name: ${{ inputs.package }}
 
-      - name: Publish To NPM
-        run: yarn npm publish --access public
+      - name: Publish To NPM (${{ inputs.package }})
+        run: yarn workspace @dannywrayuk/${{ inputs.package }} npm publish --access public
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

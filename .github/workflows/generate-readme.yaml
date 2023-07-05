@@ -27,7 +27,7 @@ jobs:
           done;
           echo hash=$(echo $packageData | sha256sum | cut -f1 -d" ")  >> $GITHUB_OUTPUT
 
-  generate-root-readme:
+  generate-readme:
     needs: hash
     runs-on: ubuntu-latest
     if: needs.hash.outputs.current != needs.hash.outputs.previous
@@ -50,7 +50,7 @@ jobs:
           templates/readme
           .
           --accept-warning=true
-          --packages="$(ls -d packages/* | cut -f2 -d'/' | xargs)""
+          --packages="$(ls -d packages/* | cut -f2 -d'/' | xargs)"
           --timestamp=$(date +%Y:%m:%d-%H:%M)
           --packagesHash=${{ needs.hash.outputs.current }}
 

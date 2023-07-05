@@ -489,9 +489,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@dannywrayuk/cookie-cutter@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "@dannywrayuk/cookie-cutter@npm:1.1.1"
+"@dannywrayuk/cookie-cutter@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@dannywrayuk/cookie-cutter@npm:1.1.2"
   dependencies:
     "@dannywrayuk/casing": ^1.0.2
     handlebars: ^4.7.7
@@ -499,7 +499,7 @@ __metadata:
     yargs: ^17.7.2
   bin:
     cookie-cutter: dist/index.js
-  checksum: df2f01b17fdd19a32f7a42111886d0aae3899f0ef73aad2c9f7580662e05221e4492a597666351feb52e35c463309e9b8ab2a3829a8e980bd2f897de8ad0fe75
+  checksum: 96f8fef474159c1d5bfc06974568f0a293c85076ff4a1e7560896cc6f683b9c4b22bfff553fb617ce11694914cc9d245c662cc72420e4be3a1ba6373afe327a5
   languageName: node
   linkType: hard
 
@@ -5543,7 +5543,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "utilities@workspace:."
   dependencies:
-    "@dannywrayuk/cookie-cutter": ^1.1.1
+    "@dannywrayuk/cookie-cutter": ^1.1.2
     "@turbo/gen": ^1.9.7
     "@types/node": 20.2.5
     "@typescript-eslint/eslint-plugin": ^5.59.8

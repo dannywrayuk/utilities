@@ -1,0 +1,63 @@
+name: Generate README
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hash:
+    runs-on: ubuntu-latest
+    outputs:
+      previous: ${{ steps.previous.outputs.hash }}
+      current: ${{ steps.current.outputs.hash }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Get Previous Hash
+        id: previous
+        run: echo hash=$(awk '/packages_hash/{print $2}' README.md) >> $GITHUB_OUTPUT
+
+      - name: Get Current Hash
+        id: current
+        run: |
+          packageData=()
+          for package in $(ls -d packages/* | cut -f2 -d'/' | xargs); do
+            packageData+=$package=$(cat packages/$package/package.json | jq ".description")
+          done;
+          echo hash=$(echo $packageData | sha256sum | cut -f1 -d" ")  >> $GITHUB_OUTPUT
+
+  generate-root-readme:
+    needs: hash
+    runs-on: ubuntu-latest
+    if: needs.hash.outputs.current != needs.hash.outputs.previous
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: Yarn
+        run: yarn
+
+      - name: Generate README
+        run: >
+          yarn cookie-cutter
+          templates/readme
+          .
+          --accept-warning=true
+          --packages="$(ls -d packages/* | cut -f2 -d'/' | xargs)""
+          --timestamp=$(date +%Y:%m:%d-%H:%M)
+          --packagesHash=${{ needs.hash.outputs.current }}
+
+      - name: Push Changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "📚 README updated (automated)"
+          git push

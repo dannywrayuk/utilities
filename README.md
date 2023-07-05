@@ -10,7 +10,7 @@
 ## Package List
 
 
-### [Casing](https://github.com/dannywrayuk/utilities/raw/main/packages/casing/README.md)
+### [Casing](https://github.com/dannywrayuk/utilities/tree/main/packages/casing/README.md)
 
 Convert the casing of strings to common alternatives
 
@@ -31,9 +31,9 @@ $ yarn add @dannywrayuk/casing
 ```
 
 
-### [Cookie Cutter](https://github.com/dannywrayuk/utilities/raw/main/packages/cookie-cutter/README.md)
+### [Cookie Cutter](https://github.com/dannywrayuk/utilities/tree/main/packages/cookie-cutter/README.md)
 
-Boilerplate generation based on template directories
+Generate boilerplate, files, and docs. All using the filesystem as a template
 
 <p>
   <a href="https://npmjs.org/package/@dannywrayuk/cookie-cutter">
@@ -52,9 +52,9 @@ $ yarn add @dannywrayuk/cookie-cutter
 ```
 
 
-### [Describe Shape](https://github.com/dannywrayuk/utilities/raw/main/packages/describe-shape/README.md)
+### [Describe Shape](https://github.com/dannywrayuk/utilities/tree/main/packages/describe-shape/README.md)
 
-Simple object descriptions, perfect for your logs
+Describe the shape of a variable using only primitive data types. Perfect for your logs
 
 <p>
   <a href="https://npmjs.org/package/@dannywrayuk/describe-shape">
@@ -79,10 +79,10 @@ If there is an option or feature you would like to see, please feel free to rais
 
 <!--
 
-This readme was automatically generated using a [cookie-cutter template](https://github.com/dannywrayuk/utilities/raw/main/templates/readme/README.md). This is some metadata about the generation process, it's not very interesting to humans.
+This readme was automatically generated using a [cookie-cutter template](https://github.com/dannywrayuk/utilities/tree/main/templates/readme/README.md). This is some metadata about the generation process, it's not very interesting to humans.
 
-timestamp: 2023:07:05-01:34
+timestamp: 2023:07:05-01:46
 
-packages_hash: 4db50a34cea2716b66c388fcb805536c93fed3c8ae0015b1a742795730841b54
+packages_hash: 7f7d1e8acd80735c9bb0eefc353b4fe0023d3ba36a72bb2f8f687b7ef3ab7fac
 
 -->

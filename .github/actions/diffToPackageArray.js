@@ -11,4 +11,11 @@ changedFiles.forEach((file) => {
     changedPackages.add(matches[1]);
   }
 });
-console.log("packageArray=" + JSON.stringify(Array.from(changedPackages)));
+
+const changedPackagesArray = Array.from(changedPackages);
+
+if (changedPackagesArray.length) {
+  console.log("packageArray=" + JSON.stringify(Array.from(changedPackages)));
+} else {
+  console.log("packageArray=" + JSON.stringify("null"));
+}

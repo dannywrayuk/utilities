@@ -6,6 +6,10 @@ on:
       - synchronize
     paths:
       - packages/**
+      - .github/workflows/package-pull-request-checks.yaml
+      - .github/workflows/get-changed-packages.yaml
+      - .github/actions/diffToPackageArray.js
+      - .github/workflows/quality-checks.yaml
 
 jobs:
   get-changed-packages:
@@ -14,6 +18,7 @@ jobs:
 
   quality-checks:
     needs: get-changed-packages
+    if: fromJson(needs.get-changed-packages.outputs.packageArray) != 'null'
     strategy:
       matrix:
         package: ${{fromJson(needs.get-changed-packages.outputs.packageArray)}}

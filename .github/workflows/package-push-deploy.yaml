@@ -5,7 +5,14 @@ on:
       - main
     paths:
       - packages/**
-      - .github/workflows/**
+      - .github/workflows/package-push-deploy.yaml
+      - .github/workflows/get-changed-packages.yaml
+      - .github/actions/diffToPackageArray.js
+      - .github/workflows/check-version.yaml
+      - .github/actions/checkVersion.js
+      - .github/workflows/quality-checks.yaml
+      - .github/workflows/deploy-from-artifact.yaml
+      - .github/workflows/update-tags.yaml
 
 jobs:
   get-changed-packages:
@@ -14,6 +21,7 @@ jobs:
 
   check-versions:
     needs: get-changed-packages
+    if: fromJson(needs.get-changed-packages.outputs.packageArray) != 'null'
     strategy:
       matrix:
         package: ${{fromJson(needs.get-changed-packages.outputs.packageArray)}}

@@ -12,7 +12,7 @@
 
 ### [Casing](https://github.com/dannywrayuk/utilities/raw/main/packages/casing/README.md)
 
-Convert the casing of a string to common alternatives
+Convert the casing of strings to common alternatives
 
 <p>
   <a href="https://npmjs.org/package/@dannywrayuk/casing">
@@ -77,16 +77,12 @@ $ yarn add @dannywrayuk/describe-shape
 
 If there is an option or feature you would like to see, please feel free to raise an issue or open a pull request. Contributions are welcome :)
 
-<br />
-
----
-
----
-
-## Metadata
+<!--
 
 This readme was automatically generated using a [cookie-cutter template](https://github.com/dannywrayuk/utilities/raw/main/templates/readme/README.md). This is some metadata about the generation process, it's not very interesting to humans.
 
-timestamp: 2023:07:05-00:46
+timestamp: 2023:07:05-01:34
 
-packages_hash: 5b08f9ba51658a455f034c7737ee0b042b050482def8f51724a3a34feba88629
+packages_hash: 4db50a34cea2716b66c388fcb805536c93fed3c8ae0015b1a742795730841b54
+
+-->

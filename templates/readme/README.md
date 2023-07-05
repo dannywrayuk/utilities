@@ -12,7 +12,7 @@
 {{#each (split " " packages) as | package |}}
 {{#with (jsonParse (read (join "/" "packages" (trim package) "package.json"))) as | packageJson |}}
 
-### [{{title package}}](https://github.com/dannywrayuk/utilities/raw/main/packages/{{package}}/README.md)
+### [{{title package}}](https://github.com/dannywrayuk/utilities/tree/main/packages/{{package}}/README.md)
 
 {{packageJson.description}}
 
@@ -41,7 +41,7 @@ If there is an option or feature you would like to see, please feel free to rais
 
 <!--
 
-This readme was automatically generated using a [cookie-cutter template](https://github.com/dannywrayuk/utilities/raw/main/templates/readme/README.md). This is some metadata about the generation process, it's not very interesting to humans.
+This readme was automatically generated using a [cookie-cutter template](https://github.com/dannywrayuk/utilities/tree/main/templates/readme/README.md). This is some metadata about the generation process, it's not very interesting to humans.
 
 timestamp: {{{timestamp}}}
 

@@ -140,4 +140,4 @@ If there is an option or feature you would like to see, please feel free to rais
 
 ## License
 
-MIT © [Danny Wray](https://github.com/dannywrayuk/utilities/blob/main/packages/describe-shape/LICENCE)
+MIT © [Danny Wray](https://github.com/dannywrayuk/utilities/tree/main/packages/describe-shape/LICENCE)

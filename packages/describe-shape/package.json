@@ -1,6 +1,6 @@
 {
   "name": "@dannywrayuk/describe-shape",
-  "description": "Simple object descriptions, perfect for your logs",
+  "description": "Describe the shape of a variable using only primitive data types. Perfect for your logs",
   "author": "dannywrayuk",
   "version": "1.0.7",
   "license": "MIT",

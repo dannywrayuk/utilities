@@ -8,13 +8,18 @@
     },
     {
       "type": "text",
-      "name": "name",
-      "message": "What is the package name?"
+      "name": "packages",
+      "message": "A list of packages"
     },
     {
       "type": "text",
-      "name": "description",
-      "message": "Can you give it a brief description?"
+      "name": "timestamp",
+      "message": "What time is it?"
+    },
+    {
+      "type": "text",
+      "name": "packagesHash",
+      "message": "Hash of the package data for caching purposes"
     }
   ]
 }

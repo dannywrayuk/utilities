@@ -26,6 +26,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: ${{ inputs.package }}
+          path: packages/${{ inputs.package }}/dist
 
       - name: Publish To NPM (${{ inputs.package }})
         run: yarn workspace @dannywrayuk/${{ inputs.package }} npm publish --access public

@@ -7,6 +7,7 @@ const addWord = (accumulator: Accumulator) =>
   accumulator.words.push(accumulator.chars.join("").toLowerCase());
 
 export const extractWords = (input: string, delimiters: string) => {
+  if (typeof input !== "string") return [];
   const result = input.split("").reduce(
     (accumulator: Accumulator, element: string) => {
       if (delimiters.includes(element)) {

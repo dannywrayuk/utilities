@@ -39,16 +39,12 @@ $ yarn add @dannywrayuk/{{package}}
 
 If there is an option or feature you would like to see, please feel free to raise an issue or open a pull request. Contributions are welcome :)
 
-<br />
-
----
-
----
-
-## Metadata
+<!--
 
 This readme was automatically generated using a [cookie-cutter template](https://github.com/dannywrayuk/utilities/raw/main/templates/readme/README.md). This is some metadata about the generation process, it's not very interesting to humans.
 
 timestamp: {{{timestamp}}}
 
 packages_hash: {{{packagesHash}}}
+
+-->

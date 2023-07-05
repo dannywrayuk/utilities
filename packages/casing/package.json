@@ -1,8 +1,8 @@
 {
   "name": "@dannywrayuk/casing",
-  "description": "Convert the casing of a string to common alternatives",
+  "description": "Convert the casing of strings to common alternatives",
   "author": "dannywrayuk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "MIT",
   "keywords": [
     "casing",

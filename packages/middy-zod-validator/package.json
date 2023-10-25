@@ -1,12 +1,17 @@
 {
-  "name": "@dannywrayuk/{{name}}",
-  "description": "{{description}}",
+  "name": "@dannywrayuk/middy-zod-validator",
+  "description": "A middy validation plugin that uses zod",
   "author": "dannywrayuk",
   "version": "1.0.0",
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+    "middy",
+    "zod",
+    "validation",
+    "typescript"
+  ],
   "main": "dist/index.js",
-  "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/{{name}}#readme",
+  "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/middy-zod-validator#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dannywrayuk/utilites.git"
@@ -29,5 +34,8 @@
     "tsconfig": "*",
     "typescript": "^5.0.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@middy/util": "^4.6.5",
+    "zod": "^3.22.4"
+  }
 }

@@ -23,7 +23,7 @@ jobs:
         run: yarn
 
       - name: Get Latest Version (NPM)
-        run: yarn npm info @dannywrayuk/${{ inputs.package }}@latest --fields version --json > LATEST_VERSION
+        run: $(yarn npm info @dannywrayuk/${{ inputs.package }}@latest --fields version --json > LATEST_VERSION) || $(echo '{"name":"@dannywrayuk/${{ inputs.package }}","version":"0.0.0"}' > LATEST_VERSION)
 
       - name: Compare with current
         run: node ./.github/actions/checkVersion.js

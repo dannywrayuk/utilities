@@ -73,6 +73,27 @@ $ yarn add @dannywrayuk/describe-shape
 ```
 
 
+### [Middy Zod Validator](https://github.com/dannywrayuk/utilities/tree/main/packages/middy-zod-validator/README.md)
+
+A middy validation plugin that uses zod
+
+<p>
+  <a href="https://npmjs.org/package/@dannywrayuk/middy-zod-validator">
+    <img src="https://img.shields.io/npm/v/@dannywrayuk/middy-zod-validator.svg" alt="version" />
+  </a>
+   <a href="https://bundlephobia.com/package/@dannywrayuk/middy-zod-validator">
+    <img src="https://img.shields.io/bundlephobia/min/@dannywrayuk/middy-zod-validator.svg" alt="install size" />
+  </a>
+  <a href="https://npmjs.org/package/@dannywrayuk/middy-zod-validator">
+    <img src="https://img.shields.io/npm/dm/@dannywrayuk/middy-zod-validator.svg" alt="downloads" />
+  </a>
+</p>
+
+```
+$ yarn add @dannywrayuk/middy-zod-validator
+```
+
+
 ## Contribution
 
 If there is an option or feature you would like to see, please feel free to raise an issue or open a pull request. Contributions are welcome :)
@@ -81,8 +102,8 @@ If there is an option or feature you would like to see, please feel free to rais
 
 This readme was automatically generated using a [cookie-cutter template](https://github.com/dannywrayuk/utilities/tree/main/templates/readme/README.md). This is some metadata about the generation process, it's not very interesting to humans.
 
-timestamp: 2023:07:05-01:46
+timestamp: 2023:10:25-15:01
 
-packages_hash: 7f7d1e8acd80735c9bb0eefc353b4fe0023d3ba36a72bb2f8f687b7ef3ab7fac
+packages_hash: b64745410c03a708659a78dcd64541e56da605204b962abd11b5b37df2077b40
 
 -->

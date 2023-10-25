@@ -9,7 +9,7 @@
   "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/{{name}}#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dannywrayuk/utilites.git"
+    "url": "git+https://github.com/dannywrayuk/utilities.git"
   },
   "files": [
     "/dist"

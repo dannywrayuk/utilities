@@ -2,7 +2,7 @@
   "name": "@dannywrayuk/middy-zod-validator",
   "description": "A middy validation plugin that uses zod",
   "author": "dannywrayuk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "keywords": [
     "middy",
@@ -14,7 +14,7 @@
   "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/middy-zod-validator#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dannywrayuk/utilites.git"
+    "url": "git+https://github.com/dannywrayuk/utilities.git"
   },
   "files": [
     "/dist"

@@ -2,7 +2,7 @@
   "name": "@dannywrayuk/casing",
   "description": "Convert the casing of strings to common alternatives",
   "author": "dannywrayuk",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "keywords": [
     "casing",
@@ -16,7 +16,7 @@
   "homepage": "https://github.com/dannywrayuk/utilities/tree/main/packages/casing#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dannywrayuk/utilites.git"
+    "url": "git+https://github.com/dannywrayuk/utilities.git"
   },
   "files": [
     "/dist"

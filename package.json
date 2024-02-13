@@ -22,5 +22,8 @@
     "packages/*",
     "internal/*"
   ],
-  "packageManager": "yarn@3.6.0"
+  "packageManager": "yarn@3.6.0",
+  "dependencies": {
+    "esbuild": "^0.20.0"
+  }
 }

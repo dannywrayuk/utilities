@@ -31,27 +31,6 @@ $ yarn add @dannywrayuk/casing
 ```
 
 
-### [Cdk Jsx](https://github.com/dannywrayuk/utilities/tree/main/packages/cdk-jsx/README.md)
-
-Generate cdk from jsx
-
-<p>
-  <a href="https://npmjs.org/package/@dannywrayuk/cdk-jsx">
-    <img src="https://img.shields.io/npm/v/@dannywrayuk/cdk-jsx.svg" alt="version" />
-  </a>
-   <a href="https://bundlephobia.com/package/@dannywrayuk/cdk-jsx">
-    <img src="https://img.shields.io/bundlephobia/min/@dannywrayuk/cdk-jsx.svg" alt="install size" />
-  </a>
-  <a href="https://npmjs.org/package/@dannywrayuk/cdk-jsx">
-    <img src="https://img.shields.io/npm/dm/@dannywrayuk/cdk-jsx.svg" alt="downloads" />
-  </a>
-</p>
-
-```
-$ yarn add @dannywrayuk/cdk-jsx
-```
-
-
 ### [Cookie Cutter](https://github.com/dannywrayuk/utilities/tree/main/packages/cookie-cutter/README.md)
 
 Generate boilerplate, files, and docs. All using the filesystem as a template
@@ -123,8 +102,8 @@ If there is an option or feature you would like to see, please feel free to rais
 
 This readme was automatically generated using a [cookie-cutter template](https://github.com/dannywrayuk/utilities/tree/main/templates/readme/README.md). This is some metadata about the generation process, it's not very interesting to humans.
 
-timestamp: 2024:02:13-23:35
+timestamp: 2024:02:20-13:51
 
-packages_hash: d82a73e6ee730a35b692d9e6f8deb187d511875fe39f43c83b11fda20e2b33c1
+packages_hash: b64745410c03a708659a78dcd64541e56da605204b962abd11b5b37df2077b40
 
 -->

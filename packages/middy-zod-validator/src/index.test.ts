@@ -52,7 +52,10 @@ describe("When the zodValidator is called", () => {
       message: "Event failed validation",
       error: "MOCK_ERROR",
     };
-    expect(input.logger.error).toHaveBeenCalledWith(error);
+    expect(input.logger.error).toHaveBeenCalledWith({
+      message: error.message,
+      error: JSON.stringify(error.error),
+    });
     expect(errorResponse).toEqual({
       statusCode: 400,
       body: JSON.stringify(error),

@@ -23,7 +23,7 @@ export const zodValidator = (opts: Inputs = {}) => {
     ((statusCode, message, error) => {
       (opts.logger ?? console).error({
         message,
-        error: error?.issues ?? error,
+        error: JSON.stringify(error?.issues ?? error),
       });
       return {
         statusCode,

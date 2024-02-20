@@ -21,10 +21,13 @@ export const zodValidator = (opts: Inputs = {}) => {
   const errorResponse =
     opts.errorResponse ??
     ((statusCode, message, error) => {
-      (opts.logger ?? console).error({ message, error });
+      (opts.logger ?? console).error({
+        message,
+        error: error?.issues ?? error,
+      });
       return {
         statusCode,
-        body: JSON.stringify({ message, error }),
+        body: JSON.stringify({ message, error: error?.issues ?? error }),
       };
     });
 

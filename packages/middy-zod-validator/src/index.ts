@@ -1,5 +1,4 @@
-import { ZodSchema } from "zod";
-import { validate } from "./validate";
+import { ZodError, ZodSchema } from "zod";
 
 // Overwrite keys on a target T with keys in the source S
 // Useful for extending an AWS type after manipulation by middy
@@ -10,34 +9,61 @@ type Inputs = {
   responseSchema?: ZodSchema;
   contextSchema?: ZodSchema;
   envSchema?: ZodSchema;
+  logger?: any;
+  errorResponse?: (
+    statusCode: number,
+    message: string,
+    error?: ZodError<any>
+  ) => object;
 };
 
-export const zodValidator = (opts: Inputs = {}) => ({
-  before: async (input: { event: unknown; context: unknown }) => {
-    validate(
-      input.event,
-      opts.eventSchema,
-      "Event object failed validation",
-      400
-    );
-    validate(
-      input.context,
-      opts.contextSchema,
-      "Context object failed validation",
-      500
-    );
-    validate(
-      process.env,
-      opts.envSchema,
-      "Environment object failed validation",
-      500
-    );
-  },
-  after: async (input: { response: unknown }) =>
-    validate(
-      input.response,
-      opts.responseSchema,
-      "Response object failed validation",
-      500
-    ),
-});
+export const zodValidator = (opts: Inputs = {}) => {
+  const errorResponse =
+    opts.errorResponse ??
+    ((statusCode, message, error) => {
+      (opts.logger ?? console).error({ message, error });
+      return {
+        statusCode,
+        body: JSON.stringify({ message, error }),
+      };
+    });
+
+  return {
+    before: async (input: { event: unknown; context: unknown }) => {
+      const eventValidation = opts.eventSchema?.safeParse(input.event);
+      if (eventValidation && !eventValidation?.success) {
+        return errorResponse(
+          400,
+          "Event failed validation",
+          eventValidation?.error
+        );
+      }
+      const contextValidation = opts.contextSchema?.safeParse(input.context);
+      if (contextValidation && !contextValidation?.success) {
+        return errorResponse(
+          400,
+          "Context failed validation",
+          contextValidation?.error
+        );
+      }
+      const envValidation = opts.envSchema?.safeParse(process.env);
+      if (envValidation && !envValidation?.success) {
+        return errorResponse(
+          400,
+          "Environment failed validation",
+          envValidation?.error
+        );
+      }
+    },
+    after: async (input: { response: unknown }) => {
+      const responseValidation = opts.responseSchema?.safeParse(input.response);
+      if (responseValidation && !responseValidation?.success) {
+        return errorResponse(
+          400,
+          "Environment failed validation",
+          responseValidation?.error
+        );
+      }
+    },
+  };
+};

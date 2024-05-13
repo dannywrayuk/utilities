@@ -564,6 +564,8 @@ __metadata:
     tsconfig: "*"
     typescript: ^5.0.4
     zod: ^3.22.4
+  peerDependencies:
+    zod: ^3.22.4
   languageName: unknown
   linkType: soft
 

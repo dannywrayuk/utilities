@@ -61,4 +61,19 @@ describe("When the zodValidator is called", () => {
       body: JSON.stringify(error),
     });
   });
+
+
+  it("should overwrite when the appropriate option is set", async () => {
+    const input = {
+      eventSchema: { safeParse: jest.fn().mockReturnValue({ success: true, data: { my: "event" } }) } as unknown as ZodSchema,
+      overwriteEvent: true,
+    };
+    const result = zodValidator(input);
+
+    const beforeInput = { event: "MOCK_EVENT", context: "MOCK_CONTEXT" };
+    await result.before(beforeInput);
+
+    expect(input.eventSchema.safeParse).toHaveBeenCalledWith("MOCK_EVENT");
+    expect(beforeInput.event).toEqual( { my: "event" });
+  });
 });

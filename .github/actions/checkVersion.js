@@ -27,7 +27,7 @@ if (
   console.log(
     "Current (" +
       currentVersion +
-      ") is grater than latest (" +
+      ") is greater than latest (" +
       latestVersion +
       ")"
   );
@@ -35,7 +35,7 @@ if (
   throw new Error(
     "Current (" +
       currentVersion +
-      ") is not grater than latest (" +
+      ") is not greater than latest (" +
       latestVersion +
       "). Cannot publish a lower version."
   );

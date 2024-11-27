@@ -10,6 +10,7 @@ type Inputs = {
   contextSchema?: ZodSchema;
   envSchema?: ZodSchema;
   logger?: any;
+  overwriteEvent?: boolean;
   errorResponse?: (
     statusCode: number,
     message: string,
@@ -40,6 +41,9 @@ export const zodValidator = (opts: Inputs = {}) => {
           "Event failed validation",
           eventValidation?.error
         );
+      }
+      if (eventValidation?.success && opts.overwriteEvent) {
+        input.event = eventValidation.data;
       }
       const contextValidation = opts.contextSchema?.safeParse(input.context);
       if (contextValidation && !contextValidation?.success) {

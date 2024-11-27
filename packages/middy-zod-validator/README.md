@@ -105,6 +105,25 @@ export const lambdaFunction: Handler<Event> = async (event) => {
 
 This way your lambda is secure at runtime and compile time!
 
+You can optionally overwrite the whole event with the result of the validation. This way you can apply defaults to values.  
+Remember to add `.passthrough()` to the objects if you want to retain any undeclared data
+
+```ts
+export const eventSchema = z.object({
+  body: z
+    .object({
+      HelloWorld: z.string().default("Hello!"),
+    }).default({}),
+}).passthrough();
+
+export const handler = middy(lambdaFunction).use(
+  zodValidator({
+    eventSchema,
+    overwriteEvent: true,
+  })
+);
+```
+
 ## Contribution
 
 If there is an option or feature you would like to see, please feel free to raise an issue or open a pull request. Contributions are welcome :)

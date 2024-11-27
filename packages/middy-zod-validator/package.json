@@ -2,7 +2,7 @@
   "name": "@dannywrayuk/middy-zod-validator",
   "description": "A middy validation plugin that uses zod",
   "author": "dannywrayuk",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "license": "MIT",
   "keywords": [
     "middy",

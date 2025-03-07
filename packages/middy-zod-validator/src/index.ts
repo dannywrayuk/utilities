@@ -1,4 +1,4 @@
-import { object, ZodError, ZodSchema } from "zod";
+import { ZodError, ZodSchema } from "zod";
 
 // Overwrite keys on a target T with keys in the source S
 // Useful for extending an AWS type after manipulation by middy

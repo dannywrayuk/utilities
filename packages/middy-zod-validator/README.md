@@ -124,6 +124,21 @@ export const handler = middy(lambdaFunction).use(
 );
 ```
 
+Optionally, you can write the results of environment variable validation to `context.env`. This way you can apply default values ​​to environment variables.
+
+```ts
+const envSchema: z.object({
+	YOUR_ENV: z.string().default("DefaultValue"),
+}),
+
+export const handler = middy(lambdaFunction).use(
+  zodValidator({
+    envSchema,
+    setEnvToContext: true,
+  })
+);
+```
+
 ## Contribution
 
 If there is an option or feature you would like to see, please feel free to raise an issue or open a pull request. Contributions are welcome :)

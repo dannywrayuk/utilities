@@ -1,4 +1,4 @@
-import { ZodError, ZodSchema } from "zod";
+import { object, ZodError, ZodSchema } from "zod";
 
 // Overwrite keys on a target T with keys in the source S
 // Useful for extending an AWS type after manipulation by middy
@@ -11,6 +11,7 @@ type Inputs = {
   envSchema?: ZodSchema;
   logger?: any;
   overwriteEvent?: boolean;
+  setEnvToContext?: boolean;
   errorResponse?: (
     statusCode: number,
     message: string,
@@ -31,6 +32,7 @@ export const zodValidator = (opts: Inputs = {}) => {
         body: JSON.stringify({ message, error: error?.issues ?? error }),
       };
     });
+  const envValidation = opts.envSchema?.safeParse(process.env);
 
   return {
     before: async (input: { event: unknown; context: unknown }) => {
@@ -53,12 +55,23 @@ export const zodValidator = (opts: Inputs = {}) => {
           contextValidation?.error
         );
       }
-      const envValidation = opts.envSchema?.safeParse(process.env);
       if (envValidation && !envValidation?.success) {
         return errorResponse(
           400,
           "Environment failed validation",
           envValidation?.error
+        );
+      }
+
+      if (
+        envValidation?.success &&
+        opts.setEnvToContext &&
+        typeof input.context === "object"
+      ) {
+        Object.assign(
+          (((input.context ??= {}) as { env?: Record<string, any> }).env ??=
+            {}),
+          envValidation.data
         );
       }
     },

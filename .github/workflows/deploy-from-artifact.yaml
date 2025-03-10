@@ -23,7 +23,7 @@ jobs:
         run: yarn
 
       - name: Download Build Artifact (${{ inputs.package }})
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: ${{ inputs.package }}
           path: packages/${{ inputs.package }}/dist
